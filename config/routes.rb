@@ -1,4 +1,6 @@
 Waterall::Application.routes.draw do
+  resources :waterings
+
   get "static/about"
   get "static/index"
   get "static/contact"
