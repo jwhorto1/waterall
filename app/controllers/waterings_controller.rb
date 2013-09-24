@@ -1,7 +1,7 @@
 class WateringsController < ApplicationController
   before_action :set_watering, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
   
-
   # GET /waterings
   # GET /waterings.json
   def index
