@@ -1,5 +1,6 @@
 class WateringsController < ApplicationController
   before_action :set_watering, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /waterings
   # GET /waterings.json

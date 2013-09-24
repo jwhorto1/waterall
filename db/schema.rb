@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920083326) do
+ActiveRecord::Schema.define(version: 20130924103537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "people", force: true do |t|
+    t.integer  "role_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -43,6 +54,7 @@ ActiveRecord::Schema.define(version: 20130920083326) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "school_id",              default: 0,  null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -1,4 +1,6 @@
 Waterall::Application.routes.draw do
+  resources :people
+
   resources :waterings
 
   get "static/about"

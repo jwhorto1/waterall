@@ -55,6 +55,11 @@
               <li><%= link_to "Buy", "http://symp1e.com/"  %></li>
               <li><%= link_to "About", "http://coxaqui.carbonmade.com/"  %></li>
               <li><%= link_to "Contact", "http://coxaqui.carbonmade.com/"  %></li>
+              <% if user_signed_in? %>
+                  <li><%= link_to "Sign out as #{current_user.person.first_name} #{current_user.person.last_name}", destroy_user_session_path, :method => :delete%></li>                  
+              <% else %>
+                  <li><%= link_to t('.sign in'), new_user_session_path %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
