@@ -18,6 +18,8 @@
 $(document).ready(function() {		
   $("#change-password-link").click(function(){  
          $("#change-password-box").toggle("slow");
+         // http://stackoverflow.com/questions/10436231/tooltips-with-twitter-bootstrap
+         $('[rel=tooltip]').tooltip()
   });
 })
 

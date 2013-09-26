@@ -11,6 +11,5 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "Welcome to your Waterall!"
       root_url
     end
-    
   end
 end
