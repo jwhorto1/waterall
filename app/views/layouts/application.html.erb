@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title><%= content_for?(:title) ? yield(:title) : "Waterall" %></title>
     <%= csrf_meta_tags %>
 
@@ -52,13 +51,14 @@
           <div class="container nav-collapse">            
             <ul class="nav">              
               <li><%= link_to "Home", "/"  %></li>
-              <li><%= link_to "Buy", "http://symp1e.com/"  %></li>
-              <li><%= link_to "About", "http://coxaqui.carbonmade.com/"  %></li>
-              <li><%= link_to "Contact", "http://coxaqui.carbonmade.com/"  %></li>
+              <li><%= link_to "Buy", "/"  %></li>
+              <li><%= link_to "About", "/"  %></li>
+              <li><%= link_to "Contact", "/"  %></li>
               <% if user_signed_in? %>
-                  <li><%= link_to "Sign out as #{current_user.person.first_name} #{current_user.person.last_name}", destroy_user_session_path, :method => :delete%></li>                  
+                  <li><%= link_to "#{current_user.person.first_name} #{current_user.person.last_name}", edit_user_registration_path%></li> 
+                  <li class="nav pull-right"><%= link_to image_tag("/assets/logoutRED.png"), destroy_user_session_path, :method => :delete%></li>
               <% else %>
-                  <li><%= link_to t('.sign in'), new_user_session_path %></li>
+                  <li><%= link_to t('.sign in'), new_user_session_path %></li> <li><%= link_to t('.sign up'), new_user_registration_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->

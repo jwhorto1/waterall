@@ -15,3 +15,23 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+$(document).ready(function() {		
+  $("#change-password-link").click(function(){  
+         $("#change-password-box").toggle("slow");
+  });
+})
+
+function toggle_visibility(id) {
+ 	    var e = document.getElementById(id);
+	if(e.style.display == 'block')
+	{
+		e.style.display = 'none';
+		event.preventDefault();
+	}
+	else
+	{
+	       e.style.display = 'block';
+		event.preventDefault();
+	}
+
+}

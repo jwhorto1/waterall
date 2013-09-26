@@ -1,0 +1,1 @@
+ENV['MASTER_PASSWORD']            = "sdfRET546teGFD567u5674567hdfDFGdfghdfghhgyhdt9847kdDfdCasdalplimY"

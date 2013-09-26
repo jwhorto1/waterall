@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+#change-password-box
+{
+	display:none;
+}
