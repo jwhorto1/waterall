@@ -8,9 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
     begin
       person = Person.find_or_initialize_by(user_id: resource.id)
-      if params[:user][:people]
-        person.first_name = params[:user][:people][:first_name]
-        person.last_name = params[:user][:people][:last_name]
+      if params[:user][:person_attributes]
+        person.first_name = params[:user][:person_attributes][:first_name]
+        person.last_name  = params[:user][:person_attributes][:last_name]
+        person.email      = params[:user][:email]
       end
     rescue StandardError => failedWith
       person.first_name = "_"
@@ -18,8 +19,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end 
     if person.save
       #do nothing for now
-      puts person.first_name
-      puts person.last_name
       puts "\n\n\n\n\n\nSaved!"
     else
       #do nothing for now
@@ -40,22 +39,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
     
-    # def create
-    #   build_resource      
-    #   if resource.save
-    #     if resource.active_for_authentication?
-    #       set_flash_message :notice, :signed_up if is_navigational_format?
-    #       sign_in(resource_name, resource)
-    #       respond_with resource, :location => redirect_location(resource_name, resource)
-    #     else
-    #       set_flash_message :warning, :inactive_signed_up, :reason => inactive_reason(resource) if is_navigational_format?
-    #       expire_session_data_after_sign_in!
-    #       respond_with resource, :location => after_inactive_sign_up_path_for(resource)
-    #     end
-    #   else
-    #     clean_up_passwords(resource)
-    #     respond_with_navigational(resource) { render_with_scope :new }
-    #   end
-    # end
+  # POST /resource
+  def create
+    build_resource(sign_up_params)
+    
+    if resource.save
+      person = Person.new
+      person.email      = resource.email
+      person.user_id    = resource.id
+      if person.save
+        #do nothing for now
+      else 
+        #do nothing for now
+      end
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_navigational_format?
+        sign_up(resource_name, resource)
+        respond_with resource, :location => after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
+        expire_session_data_after_sign_in!
+        respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      respond_with resource
+    end
+  end
    
 end
