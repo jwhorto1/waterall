@@ -63,16 +63,17 @@ ActiveRecord::Schema.define(version: 20130927223155) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "waterallboards", force: true do |t|
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "address"
-    t.string   "zipcode"
-    t.string   "boardnumber"
-    t.string   "boardmodel"
-    t.integer  "person_id"
-    t.integer  "channels"
-    t.string   "ip"
-    t.string   "status"
+    t.float    "latitude",      default: 0.0, null: false
+    t.float    "longitude",     default: 0.0, null: false
+    t.string   "address",       default: "",  null: false
+    t.string   "zipcode",       default: "",  null: false
+    t.string   "boardnumber",   default: "",  null: false
+    t.string   "boardmodel",    default: "",  null: false
+    t.integer  "person_id",     default: 0,   null: false
+    t.integer  "channels",      default: 0,   null: false
+    t.string   "ip",            default: "",  null: false
+    t.string   "status",        default: "",  null: false
+    t.string   "googlemap_url", default: "",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,6 @@
 class Waterallboard < ActiveRecord::Base
+  extend ::Geocoder::Model::ActiveRecord
   belongs_to :person
-  geocode_by :address
+  geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 end
