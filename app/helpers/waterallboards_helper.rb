@@ -1,0 +1,2 @@
+module WaterallboardsHelper
+end

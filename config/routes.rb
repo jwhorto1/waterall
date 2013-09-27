@@ -1,4 +1,6 @@
 Waterall::Application.routes.draw do
+  resources :waterallboards
+
   resources :people
 
   resources :waterings

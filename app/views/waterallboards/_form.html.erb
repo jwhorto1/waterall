@@ -1,0 +1,49 @@
+<%= form_for(@waterallboard) do |f| %>
+  <% if @waterallboard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@waterallboard.errors.count, "error") %> prohibited this waterallboard from being saved:</h2>
+
+      <ul>
+      <% @waterallboard.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %><br>
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="field">
+    <%= f.label :boardnumber %><br>
+    <%= f.text_field :boardnumber %>
+  </div>
+  <div class="field">
+    <%= f.label :boardmodel %><br>
+    <%= f.text_field :boardmodel %>
+  </div>
+  <div class="field">
+    <%= f.label :person_id %><br>
+    <%= f.number_field :person_id %>
+  </div>
+  <div class="field">
+    <%= f.label :channels %><br>
+    <%= f.number_field :channels %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
