@@ -1,6 +1,6 @@
-class CreateWaterallboards < ActiveRecord::Migration
+class CreateBoards < ActiveRecord::Migration
   def change
-    create_table :waterallboards do |t|
+    create_table :boards do |t|
       t.float :latitude, :null => false, :default => ""
       t.float :longitude, :null => false, :default => ""
       t.string :address, :null => false, :default => ""
@@ -12,9 +12,7 @@ class CreateWaterallboards < ActiveRecord::Migration
       t.string :ip, :null => false, :default => ""
       t.string :status, :null => false, :default => ""
       t.string :googlemap_url, :null => false, :default => ""
-      
       t.timestamps
     end
-    
   end
 end

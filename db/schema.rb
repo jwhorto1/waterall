@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927223155) do
+ActiveRecord::Schema.define(version: 20130927233643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boards", force: true do |t|
+    t.float    "latitude",      default: 0.0, null: false
+    t.float    "longitude",     default: 0.0, null: false
+    t.string   "address",       default: "",  null: false
+    t.string   "zipcode",       default: "",  null: false
+    t.string   "boardnumber",   default: "",  null: false
+    t.string   "boardmodel",    default: "",  null: false
+    t.integer  "person_id",     default: 0,   null: false
+    t.integer  "channels",      default: 0,   null: false
+    t.string   "ip",            default: "",  null: false
+    t.string   "status",        default: "",  null: false
+    t.string   "googlemap_url", default: "",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", force: true do |t|
     t.integer  "role_id"

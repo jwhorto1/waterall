@@ -1,5 +1,5 @@
 Waterall::Application.routes.draw do
-  resources :waterallboards
+  resources :boards
 
   resources :people
 
