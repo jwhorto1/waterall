@@ -69,6 +69,6 @@ class WaterallboardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def waterallboard_params
-      params.require(:waterallboard).permit(:latitude, :longitude, :address, :zipcode, :boardnumber, :boardmodel, :person_id, :channels)
+      params.require(:waterallboard).permit(:latitude, :longitude, :address, :zipcode, :boardnumber, :boardmodel, :channels)
     end
 end
