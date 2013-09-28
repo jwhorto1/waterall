@@ -10,7 +10,7 @@ module UserHelper
     if Board.find_by_person_id(user.person.id)
     else
       result = request.location
-      addr = "#{result.try(:city)}, #{result.try(:state)} #{result.try(:zipcode)}"
+      addr = "#{result.try(:city)}, #{result.try(:state)} #{result.try(:postal_code)}"
       board = Board.new
       board.person_id = user.person.id
       board.address = addr
