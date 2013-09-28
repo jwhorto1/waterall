@@ -20,14 +20,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if person.save
       puts "\n\n\n\n\n\nSaved!"
       #create person's first default board
-      if !(Board.find_by_person_id(person.id))
-        result = request.location
-        addr = "#{result.try(:city)}, #{result.try(:state)} #{result.try(:zipcode)}"
-        board = Board.new
-        board.address = addr
-        puts board.save
-        puts board.inspect.to_s
-      end
     else
       #do nothing for now
       puts "\n\n\n\n\n\nNot Saved!"
