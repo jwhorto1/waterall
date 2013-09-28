@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /boards
   # GET /boards.json
@@ -25,7 +26,12 @@ class BoardsController < ApplicationController
   # POST /boards.json
   def create
     @board = Board.new(board_params)
-
+    begin
+    @board.person_id = current_user.person.id || 0
+    @board.ip = request.ip || 0
+    rescue
+      #do nothing for now
+    end
     respond_to do |format|
       if @board.save
         format.html { redirect_to @board, notice: 'Board was successfully created.' }

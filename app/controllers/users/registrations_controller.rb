@@ -44,10 +44,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     
     if resource.save
+      #create a person
       person = Person.new
       person.email      = resource.email
       person.user_id    = resource.id
-      if person.save
+      #create person's first default board
+      result = request.location
+      addr = "#{result.try(:city)}, #{result.try(:state)} #{result.try(:zipcode)}"
+      board = Board.new
+      board.address = addr
+      
+      if person.save & board.save
         #do nothing for now
       else 
         #do nothing for now

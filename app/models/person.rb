@@ -1,4 +1,4 @@
 class Person < ActiveRecord::Base
   belongs_to :user
-  has_many :waterboards
+  has_many :boards
 end
