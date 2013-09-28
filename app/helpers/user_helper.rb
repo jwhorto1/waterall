@@ -6,11 +6,13 @@ module UserHelper
       "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&m='identicon'"
   end
   def check_my_first_boards_existance(user)
+    puts "\n\n\n\n\n\n\n\nchecking"
     if Board.find_by_person_id(user.person.id)
     else
       result = request.location
       addr = "#{result.try(:city)}, #{result.try(:state)} #{result.try(:zipcode)}"
       board = Board.new
+      board.person_id = user.person.id
       board.address = addr
       puts board.save
       puts board.inspect.to_s
