@@ -47,7 +47,7 @@
     </li>
     <li class="span3">
       <div class="thumbnail">
-        <a href="#{edit_board_path(current_user.person.boards.first)}" class="thumbnail" rel="tooltip" data-original-title="Edit your board's location" data-placement="bottom">
+        <a href=<%="#{edit_board_path(current_user.person.boards.first)}"%> class="thumbnail" rel="tooltip" data-original-title="Edit your board's location" data-placement="bottom">
           <%= image_tag(google_maps_image(current_user.person.boards.first, {width: 450, height: 300}), :class => "img-responsive", :alt =>"Responsive image") %>
         </a>
         <h4>Your first board</h4>
