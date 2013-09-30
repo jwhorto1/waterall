@@ -1,12 +1,10 @@
 class BoardshortmessagesController < ApplicationController
   before_action :set_boardshortmessage, only: [:show, :edit, :update, :destroy]
-
   # GET /boardshortmessages
   # GET /boardshortmessages.json
   def index
     @boardshortmessages = Boardshortmessage.all
   end
-
   # GET /boardshortmessages/1
   # GET /boardshortmessages/1.json
   def show
@@ -25,9 +23,8 @@ class BoardshortmessagesController < ApplicationController
   # POST /boardshortmessages.json
   def create
     @boardshortmessage = Boardshortmessage.new(boardshortmessage_params)
-
     respond_to do |format|
-      if @boardshortmessage.save
+      if @boardshortmessage.save && Boardshortmessage.encode_4_board(@boardshortmessage)
         format.html { redirect_to @boardshortmessage, notice: 'Boardshortmessage was successfully created.' }
         format.json { render action: 'show', status: :created, location: @boardshortmessage }
       else
@@ -36,12 +33,11 @@ class BoardshortmessagesController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /boardshortmessages/1
   # PATCH/PUT /boardshortmessages/1.json
   def update
     respond_to do |format|
-      if @boardshortmessage.update(boardshortmessage_params)
+      if @boardshortmessage.update(boardshortmessage_params) && Boardshortmessage.encode_4_board(@boardshortmessage)
         format.html { redirect_to @boardshortmessage, notice: 'Boardshortmessage was successfully updated.' }
         format.json { head :no_content }
       else

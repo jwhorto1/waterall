@@ -1,149 +1,59 @@
 <%= form_for(@boardshortmessage) do |f| %>
   <% if @boardshortmessage.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@boardshortmessage.errors.count, "error") %> prohibited this boardshortmessage from being saved:</h2>
-
+      <h4><%= pluralize(@boardshortmessage.errors.count, "error") %> prohibited this boardshortmessage from being saved:</h4>
       <ul>
       <% @boardshortmessage.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li style="color:red"><%= msg %></li>
       <% end %>
       </ul>
-    </div>
+    </div><br/>
   <% end %>
   <div class="field">
-    <%= f.label :date %>
-    <%= f.datetime_select :date, :class => "input-append date" %>
-  </div>
-  <div class="well">
-    <div id="datetimepicker1" class="input-append date">
-      <input data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
+    <div id="datetimepicker2" class="input-append date">
+      <%= f.label :date, "Date & Time" %>
+      <%= f.text_field :date, :class => "input-append date", :data => { :format => "yyyy-MM-dd hh:mm:ss" }%>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
         </i>
       </span>
     </div>
   </div>
-  <script type="text/javascript">
-    $(function() {
-      $('#datetimepicker1').datetimepicker({
-        language: 'en'
-      });
-    });
-  </script>
+  
   <div class="field">
     <%= f.label :channel1_on_in_seconds %>
-    <%= f.text_field :channel1_on_in_seconds %>
+    <%= f.number_field :channel1_on_in_seconds, :size => 5, :maxlength => 4, :in => 0..99%>
   </div>
   <div class="field">
     <%= f.label :channel2_on_in_seconds %>
-    <%= f.text_field :channel2_on_in_seconds %>
+    <%= f.number_field :channel2_on_in_seconds, :in => 0..99%>
   </div>
   <div class="field">
     <%= f.label :channel3_on_in_seconds %>
-    <%= f.text_field :channel3_on_in_seconds %>
+    <%= f.number_field :channel3_on_in_seconds, :in => 0..99 %>
   </div>
   <div class="field">
     <%= f.label :channel4_on_in_seconds %>
-    <%= f.text_field :channel4_on_in_seconds %>
+    <%= f.number_field :channel4_on_in_seconds, :in => 0..99 %>
   </div>
   <div class="field">
     <%= f.label :channel5_on_in_seconds %>
-    <%= f.text_field :channel5_on_in_seconds %>
+    <%= f.number_field :channel5_on_in_seconds, :in => 0..99 %>
   </div>
   <div class="field">
     <%= f.label :channel6_on_in_seconds %>
-    <%= f.text_field :channel6_on_in_seconds %>
+    <%= f.number_field :channel6_on_in_seconds, :in => 0..99 %>
   </div>
   <div class="field">
     <%= f.label :channel7_on_in_seconds %>
-    <%= f.text_field :channel7_on_in_seconds %>
+    <%= f.number_field :channel7_on_in_seconds, :in => 0..99 %>
   </div>
   <div class="field">
     <%= f.label :channel8_on_in_seconds %>
-    <%= f.text_field :channel8_on_in_seconds %>
+    <%= f.number_field :channel8_on_in_seconds, :in => 0..99 %>
   </div>
-  <div class="field">
-    <%= f.label :randomaccesscode %>
-    <%= f.number_field :randomaccesscode %>
-  </div>
-  <div class="field">
-    <%= f.label :scalediv32 %>
-    <%= f.number_field :scalediv32 %>
-  </div>
-  <div class="field">
-    <%= f.label :concatinated_board_ascii %>
-    <%= f.text_field :concatinated_board_ascii %>
-  </div>
+
   <div class="actions">
     <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
   </div>
 <% end %>
-<!-- 
-rails destroy scaffold boardshortmessage board_id randomaccesscode:integer scalediv32:integer date:datetime year:integer month:integer day:integer hour:integer minute:integer second:integer channel1:integer channel2:integer channel3:integer channel4:integer channel5:integer channel6:integer channel7:integer channel8:integer sendstatus:integer echo:integer willsend:integer checksum:integer concatinated_board_ascii:string
-
-rails g scaffold boardshortmessage board_id channel1_on_in_seconds channel2_on_in_seconds channel3_on_in_seconds channel4_on_in_seconds channel5_on_in_seconds channel6_on_in_seconds channel7_on_in_seconds channel8_on_in_seconds randomaccesscode:integer scalediv32:integer date:datetime year:integer month:integer day:integer hour:integer minute:integer second:integer channel1:integer channel2:integer channel3:integer channel4:integer channel5:integer channel6:integer channel7:integer channel8:integer sendstatus:integer echo:integer willsend:integer checksum:integer concatinated_board_ascii:string
-
-
-class CreateBoardshortmessages < ActiveRecord::Migration
-  def change
-    create_table :boardshortmessages do |t|
-      #for human
-      t.integer :channel1_on_in_seconds, :null => false, :default => 2
-      t.integer :channel2_on_in_seconds, :null => false, :default => 3
-      t.integer :channel3_on_in_seconds, :null => false, :default => 4
-      t.integer :channel4_on_in_seconds, :null => false, :default => 5
-      t.integer :channel5_on_in_seconds, :null => false, :default => 6
-      t.integer :channel6_on_in_seconds, :null => false, :default => 7
-      t.integer :channel7_on_in_seconds, :null => false, :default => 8
-      t.integer :channel8_on_in_seconds, :null => false, :default => 9
-      t.datetime :date
-      #for board
-      t.integer :board_id, :null => false, :default => 0
-      t.integer :randomaccesscode, :null => false, :default => 8888
-      t.integer :scalediv32, :null => false, :default => 8888
-      t.integer :year, :null => false, :default => 8888
-      t.integer :month, :null => false, :default => 8888
-      t.integer :day, :null => false, :default => 8888
-      t.integer :hour, :null => false, :default => 8888
-      t.integer :minute, :null => false, :default => 8888
-      t.integer :second, :null => false, :default => 8888
-      t.integer :channel1, :null => false, :default => 8888
-      t.integer :channel2, :null => false, :default => 8888
-      t.integer :channel3, :null => false, :default => 8888
-      t.integer :channel4, :null => false, :default => 8888
-      t.integer :channel5, :null => false, :default => 8888
-      t.integer :channel6, :null => false, :default => 8888
-      t.integer :channel7, :null => false, :default => 8888
-      t.integer :channel8, :null => false, :default => 8888
-      t.integer :sendstatus, :null => false, :default => 8888
-      t.integer :echo, :null => false, :default => 8888
-      t.integer :willsend, :null => false, :default => 8888
-      t.integer :checksum, :null => false, :default => 8888
-      #full message
-      t.string :concatinated_board_ascii, :null => false, :default => ""
-      #other
-      t.timestamps
-    end
-  end
-end
-
-
-RandomAccessCode !~ 33 ,126
-Time.hour 13 49 ,51
-Time.minute 46 52, 54
-Time.second 02 48, 50
-Time.month 07 (July) 48, 55
-Time.day 31 51, 49
-Time.year 12 (2012) 49, 50
-ScaleDiv32 64 (for 2.00) 54, 52
-Channel1 & 2 skip/advance 10 49, 48
-Channel3 & 4 skip/advance 00 48, 48
-Channel5 & 6 skip/advance 00 48, 48
-Channel7 & 8 skip/advance 00 48, 48
-Channel9 & 10 skip/advance 00 48, 48
-Send_status 01 48, 49
-Echo 00 48, 48
-Will_send_TT 00 48, 48
-Checksum 23 50, 51
-First 19 Words, raw ASCII -->
-
