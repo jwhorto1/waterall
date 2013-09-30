@@ -70,6 +70,6 @@ class WateringsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def watering_params
-      params.require(:watering).permit(:time, :version, :channel, :user_id)
+      params.require(:watering).permit(:time, :version, :channel)
     end
 end

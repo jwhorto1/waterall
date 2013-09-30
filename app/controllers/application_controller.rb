@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  before_filter :set_user_time_zone
   protect_from_forgery with: :exception
   def after_sign_in_path_for(resource_or_scope)
     
@@ -10,6 +11,14 @@ class ApplicationController < ActionController::Base
     else
       flash[:notice] = "Welcome to your Waterall!"
       root_url
+    end
+  end
+  def set_user_time_zone
+    if false
+      Time.zone = current_user.try(:time_zone)
+    else
+      Time.zone = "Pacific Time (US & Canada)"
+      # already set to Pacific Time on environement
     end
   end
 end

@@ -1,3 +1,6 @@
+<!-- Make sure I already have a board -->
+<%check_my_first_boards_existance(current_user)%>
+<!-- END checking for board -->
 <div class="span4">
 <h2>Update your profile</h2>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -42,6 +45,17 @@
         <%= image_tag(user_avatar_url(current_user, size: 75), :class => "img-responsive", :alt =>"Responsive image") %>
       </a>
     </li>
+    <li class="span3">
+      <div class="thumbnail">
+        <a href=<%="#{edit_board_path(current_user.person.boards.first)}"%> class="thumbnail" rel="tooltip" data-original-title="Edit your board's location" data-placement="bottom">
+          <%= image_tag(google_maps_image(current_user.person.boards.first, {width: 450, height: 300}), :class => "img-responsive", :alt =>"Responsive image") %>
+        </a>
+        <h4>Your first board</h4>
+        <p>We think your first board is around here (<%="#{current_user.person.boards.first.address}"%>). Feel free to edit this and all your other board location.</p>
+        <p><a href=<%="#{edit_board_path(current_user.person.boards.first)}"%> class="btn btn-primary">Edit</a> <a href=<%="#{boards_path}"%> class="btn">View all your boards</a></p>
+      </div>
+    </li>
+    
   </ul>
 </div>
   

@@ -1,0 +1,59 @@
+<%= form_for(@boardshortmessage) do |f| %>
+  <% if @boardshortmessage.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@boardshortmessage.errors.count, "error") %> prohibited this boardshortmessage from being saved:</h4>
+      <ul>
+      <% @boardshortmessage.errors.full_messages.each do |msg| %>
+        <li style="color:red"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div><br/>
+  <% end %>
+  <div class="field">
+    <div id="datetimepicker2" class="input-append date">
+      <%= f.label :date, "Date & Time" %>
+      <%= f.text_field :date, :class => "input-append date", :data => { :format => "yyyy-MM-dd hh:mm:ss" }%>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+        </i>
+      </span>
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :channel1_on_in_seconds %>
+    <%= f.number_field :channel1_on_in_seconds, :size => 5, :maxlength => 4, :in => 0..99%>
+  </div>
+  <div class="field">
+    <%= f.label :channel2_on_in_seconds %>
+    <%= f.number_field :channel2_on_in_seconds, :in => 0..99%>
+  </div>
+  <div class="field">
+    <%= f.label :channel3_on_in_seconds %>
+    <%= f.number_field :channel3_on_in_seconds, :in => 0..99 %>
+  </div>
+  <div class="field">
+    <%= f.label :channel4_on_in_seconds %>
+    <%= f.number_field :channel4_on_in_seconds, :in => 0..99 %>
+  </div>
+  <div class="field">
+    <%= f.label :channel5_on_in_seconds %>
+    <%= f.number_field :channel5_on_in_seconds, :in => 0..99 %>
+  </div>
+  <div class="field">
+    <%= f.label :channel6_on_in_seconds %>
+    <%= f.number_field :channel6_on_in_seconds, :in => 0..99 %>
+  </div>
+  <div class="field">
+    <%= f.label :channel7_on_in_seconds %>
+    <%= f.number_field :channel7_on_in_seconds, :in => 0..99 %>
+  </div>
+  <div class="field">
+    <%= f.label :channel8_on_in_seconds %>
+    <%= f.number_field :channel8_on_in_seconds, :in => 0..99 %>
+  </div>
+
+  <div class="actions">
+    <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
+  </div>
+<% end %>
