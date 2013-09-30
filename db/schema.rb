@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927233643) do
+ActiveRecord::Schema.define(version: 20130930040451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,42 @@ ActiveRecord::Schema.define(version: 20130927233643) do
     t.string   "ip",            default: "",  null: false
     t.string   "status",        default: "",  null: false
     t.string   "googlemap_url", default: "",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "boardshortmessages", force: true do |t|
+    t.string   "channel1_on_in_seconds",   default: "0",  null: false
+    t.string   "channel2_on_in_seconds",   default: "0",  null: false
+    t.string   "channel3_on_in_seconds",   default: "0",  null: false
+    t.string   "channel4_on_in_seconds",   default: "0",  null: false
+    t.string   "channel5_on_in_seconds",   default: "0",  null: false
+    t.string   "channel6_on_in_seconds",   default: "0",  null: false
+    t.string   "channel7_on_in_seconds",   default: "0",  null: false
+    t.string   "channel8_on_in_seconds",   default: "0",  null: false
+    t.datetime "date"
+    t.integer  "board_id",                 default: 0,    null: false
+    t.integer  "randomaccesscode",         default: 8888, null: false
+    t.integer  "scalediv32",               default: 8888, null: false
+    t.integer  "year",                     default: 8888, null: false
+    t.integer  "month",                    default: 8888, null: false
+    t.integer  "day",                      default: 8888, null: false
+    t.integer  "hour",                     default: 8888, null: false
+    t.integer  "minute",                   default: 8888, null: false
+    t.integer  "second",                   default: 8888, null: false
+    t.integer  "channel1",                 default: 8888, null: false
+    t.integer  "channel2",                 default: 8888, null: false
+    t.integer  "channel3",                 default: 8888, null: false
+    t.integer  "channel4",                 default: 8888, null: false
+    t.integer  "channel5",                 default: 8888, null: false
+    t.integer  "channel6",                 default: 8888, null: false
+    t.integer  "channel7",                 default: 8888, null: false
+    t.integer  "channel8",                 default: 8888, null: false
+    t.integer  "sendstatus",               default: 8888, null: false
+    t.integer  "echo",                     default: 8888, null: false
+    t.integer  "willsend",                 default: 8888, null: false
+    t.integer  "checksum",                 default: 8888, null: false
+    t.string   "concatinated_board_ascii", default: "",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
