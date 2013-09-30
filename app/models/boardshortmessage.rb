@@ -20,7 +20,9 @@ class Boardshortmessage < ActiveRecord::Base
       #date conversion
     boardsm.date_conversion(boardsm)
       #ascii conversion
+      #TODO: convert the other fields if necessary and add to concatnate string as needed.
     #send to Concatinated board ascii
+    boardsm.concatenate(boardsm)
   end  
   def to_ascii(number)
     if number.to_s.size < 2
@@ -28,12 +30,9 @@ class Boardshortmessage < ActiveRecord::Base
      number = Boardshortmessage.new.add_leading(number)
     end
     ascii_converted = ""
-    puts "num:#{number}"
     "#{number}".each_byte do |c|
        ascii_converted += c.to_s
-       puts "#{c} | #{ascii_converted}\n"
     end
-    puts "#{ascii_converted}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
     ascii_converted
   end
   def add_leading(number)
@@ -42,13 +41,27 @@ class Boardshortmessage < ActiveRecord::Base
   def date_conversion(boardsm)
     dates = ["year", "month", "day", "hour", "minute", "second"]
     dates.each do |n|
-      puts "#{n}"
       boardsm.public_send("#{n}=", boardsm.to_ascii(boardsm.read_attribute("date").to_datetime.send("#{n}")))
       if n == "year"#needs s special handling
         boardsm.public_send("#{n}=", boardsm.to_ascii(boardsm.read_attribute("date").to_datetime.strftime("%y")))
-        
       end
     end
+  end
+  def concatenate(boardsm)
+    concat = ""
+    #add channel configuration
+    (1..8).each do |n|
+      concat << boardsm.read_attribute("channel#{n}").to_s
+    end
+    #add date configuration
+    dates = ["year", "month", "day", "hour", "minute", "second"]
+    dates.each do |n|
+      concat << boardsm.read_attribute("#{n}").to_s      
+    end
+    boardsm.concatinated_board_ascii = concat
+    #add others as needed
+    #TODO
+    #compound photonics
     
   end
 end
