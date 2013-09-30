@@ -3,7 +3,7 @@ class Boardshortmessage < ActiveRecord::Base
                                  :unless   => :date_is_correct?
   def date_is_correct?
     puts "#{self.read_attribute("date")}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    if self.read_attribute("date") < DateTime.now
+    if self.date < DateTime.now
       errors.add(:date, 'is invalid. Cannot be in the past')
     else
       true
@@ -23,6 +23,11 @@ class Boardshortmessage < ActiveRecord::Base
       #TODO: convert the other fields if necessary and add to concatnate string as needed.
     #send to Concatinated board ascii
     boardsm.concatenate(boardsm)
+    if boardsm.save
+      return true
+    else
+      return false
+    end
   end  
   def to_ascii(number)
     if number.to_s.size < 2
@@ -51,17 +56,33 @@ class Boardshortmessage < ActiveRecord::Base
     concat = ""
     #add channel configuration
     (1..8).each do |n|
-      concat << boardsm.read_attribute("channel#{n}").to_s
+      num = boardsm.read_attribute("channel#{n}_on_in_seconds").to_s
+      if num.to_s.size < 2
+        #ajust the number buffer
+       num = Boardshortmessage.new.add_leading(num)
+      end
+      puts num
+      puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+      concat << num
     end
+    
     #add date configuration
     dates = ["year", "month", "day", "hour", "minute", "second"]
     dates.each do |n|
-      concat << boardsm.read_attribute("#{n}").to_s      
+      if n == "year"#needs s special handling
+        concat << boardsm.read_attribute("date").to_datetime.strftime("%y").to_s
+      else
+        num = boardsm.read_attribute("date").to_datetime.send("#{n}").to_s
+        if num.to_s.size < 2
+          #ajust the number buffer
+         num = Boardshortmessage.new.add_leading(num)
+        end
+        concat << num
+      end 
     end
     boardsm.concatinated_board_ascii = concat
     #add others as needed
     #TODO
     #compound photonics
-    
   end
 end
