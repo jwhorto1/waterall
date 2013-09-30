@@ -22,12 +22,7 @@ $(document).ready(function() {
          $('[rel=tooltip]').tooltip()
   });
 })
-//boardshortmessages/1/edit
-$(function() {
-  $('#datetimepicker2').datetimepicker({
-    language: 'en'
-  });
-});
+
 function toggle_visibility(id) {
  	    var e = document.getElementById(id);
 	if(e.style.display == 'block')

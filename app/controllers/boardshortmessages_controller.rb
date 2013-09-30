@@ -25,7 +25,7 @@ class BoardshortmessagesController < ApplicationController
   # POST /boardshortmessages.json
   def create
     @boardshortmessage = Boardshortmessage.new(boardshortmessage_params)
-
+    Boardshortmessage.encode_4_board(@boardshortmessage)
     respond_to do |format|
       if @boardshortmessage.save
         format.html { redirect_to @boardshortmessage, notice: 'Boardshortmessage was successfully created.' }
@@ -40,6 +40,8 @@ class BoardshortmessagesController < ApplicationController
   # PATCH/PUT /boardshortmessages/1
   # PATCH/PUT /boardshortmessages/1.json
   def update
+    Boardshortmessage.encode_4_board(@boardshortmessage)
+    
     respond_to do |format|
       if @boardshortmessage.update(boardshortmessage_params)
         format.html { redirect_to @boardshortmessage, notice: 'Boardshortmessage was successfully updated.' }
