@@ -2,7 +2,6 @@
   <% if @boardshortmessage.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@boardshortmessage.errors.count, "error") %> prohibited this boardshortmessage from being saved:</h2>
-
       <ul>
       <% @boardshortmessage.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,25 +10,15 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :date %>
-    <%= f.datetime_select :date, :class => "input-append date" %>
-  </div>
-  <div class="well">
-    <div id="datetimepicker1" class="input-append date">
-      <input data-format="MM/dd/yyyy hh:mm:ss" type="text"></input>
+    <div id="datetimepicker2" class="input-append date">
+      <%= f.label :date %>
+      <%= f.text_field :date, :class => "input-append date", :data => { :format => "yyyy-MM-dd hh:mm:ss" }%>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
         </i>
       </span>
     </div>
   </div>
-  <script type="text/javascript">
-    $(function() {
-      $('#datetimepicker1').datetimepicker({
-        language: 'en'
-      });
-    });
-  </script>
   <div class="field">
     <%= f.label :channel1_on_in_seconds %>
     <%= f.text_field :channel1_on_in_seconds %>
@@ -145,5 +134,12 @@ Send_status 01 48, 49
 Echo 00 48, 48
 Will_send_TT 00 48, 48
 Checksum 23 50, 51
-First 19 Words, raw ASCII -->
+First 19 Words, raw ASCII 
+
+
+$('#datetimepicker1').datetimepicker({
+  language: 'en'
+});
+
+-->
 
