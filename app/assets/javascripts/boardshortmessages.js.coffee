@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #http://js2coffee.org/
 #boardshortmessages/1/edit
-$ $(document).ready ->
+$(document).ready ->
   $("#datetimepicker2").datetimepicker language: "en"
 

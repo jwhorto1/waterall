@@ -1,59 +1,97 @@
-<%= form_for(@boardshortmessage) do |f| %>
-  <% if @boardshortmessage.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(@boardshortmessage.errors.count, "error") %> prohibited this boardshortmessage from being saved:</h4>
-      <ul>
-      <% @boardshortmessage.errors.full_messages.each do |msg| %>
-        <li style="color:red"><%= msg %></li>
-      <% end %>
-      </ul>
-    </div><br/>
-  <% end %>
-  <div class="field">
-    <div id="datetimepicker2" class="input-append date">
-      <%= f.label :date, "Date & Time" %>
-      <%= f.text_field :date, :class => "input-append date", :data => { :format => "yyyy-MM-dd hh:mm:ss" }%>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-        </i>
-      </span>
+<div class="span4">
+  <%= form_for(@boardshortmessage) do |f| %>
+    <% if @boardshortmessage.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@boardshortmessage.errors.count, "error") %> prohibited this boardshortmessage from being saved:</h4>
+        <ul>
+        <% @boardshortmessage.errors.full_messages.each do |msg| %>
+          <li style="color:red"><%= msg %></li>
+        <% end %>
+        </ul>
+      </div><br/>
+    <% end %>
+    <div class="field">
+      <div id="datetimepicker2" class="input-append date">
+        <%= f.label :date, "Date & Time" %>
+        <%= f.text_field :date, :class => "input-append date", :data => { :format => "yyyy-MM-dd hh:mm:ss" }%>
+        <span class="add-on">
+          <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar">
+          </i>
+        </span>
+      </div>
     </div>
-  </div>
   
-  <div class="field">
-    <%= f.label :channel1_on_in_seconds %>
-    <%= f.number_field :channel1_on_in_seconds, :in => 0..99%>
-  </div>
-  <div class="field">
-    <%= f.label :channel2_on_in_seconds %>
-    <%= f.number_field :channel2_on_in_seconds, :in => 0..99%>
-  </div>
-  <div class="field">
-    <%= f.label :channel3_on_in_seconds %>
-    <%= f.number_field :channel3_on_in_seconds, :in => 0..99 %>
-  </div>
-  <div class="field">
-    <%= f.label :channel4_on_in_seconds %>
-    <%= f.number_field :channel4_on_in_seconds, :in => 0..99 %>
-  </div>
-  <div class="field">
-    <%= f.label :channel5_on_in_seconds %>
-    <%= f.number_field :channel5_on_in_seconds, :in => 0..99 %>
-  </div>
-  <div class="field">
-    <%= f.label :channel6_on_in_seconds %>
-    <%= f.number_field :channel6_on_in_seconds, :in => 0..99 %>
-  </div>
-  <div class="field">
-    <%= f.label :channel7_on_in_seconds %>
-    <%= f.number_field :channel7_on_in_seconds, :in => 0..99 %>
-  </div>
-  <div class="field">
-    <%= f.label :channel8_on_in_seconds %>
-    <%= f.number_field :channel8_on_in_seconds, :in => 0..99 %>
-  </div>
+    <div class="field">
+      <%= f.label :channel1_on_in_seconds %>
+      <%= f.number_field :channel1_on_in_seconds, :in => 0..99%>
+    </div>
+    <div class="field">
+      <%= f.label :channel2_on_in_seconds %>
+      <%= f.number_field :channel2_on_in_seconds, :in => 0..99%>
+    </div>
+    <div class="field">
+      <%= f.label :channel3_on_in_seconds %>
+      <%= f.number_field :channel3_on_in_seconds, :in => 0..99 %>
+    </div>
+    <div class="field">
+      <%= f.label :channel4_on_in_seconds %>
+      <%= f.number_field :channel4_on_in_seconds, :in => 0..99 %>
+    </div>
+    <div class="field">
+      <%= f.label :channel5_on_in_seconds %>
+      <%= f.number_field :channel5_on_in_seconds, :in => 0..99 %>
+    </div>
+    <div class="field">
+      <%= f.label :channel6_on_in_seconds %>
+      <%= f.number_field :channel6_on_in_seconds, :in => 0..99 %>
+    </div>
+    <div class="field">
+      <%= f.label :channel7_on_in_seconds %>
+      <%= f.number_field :channel7_on_in_seconds, :in => 0..99 %>
+    </div>
+    <div class="field">
+      <%= f.label :channel8_on_in_seconds %>
+      <%= f.number_field :channel8_on_in_seconds, :in => 0..99 %>
+    </div>
 
-  <div class="actions">
-    <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
-  </div>
-<% end %>
+    <div class="actions">
+      <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
+    </div>
+  <% end %>
+  <script>
+  $(document).ready(function() {
+    return $("#datetimepicker2").datetimepicker({
+      language: "en"
+    });
+  });
+  </script>
+</div>
+<div class="span4">
+  <ul class="thumbnails">
+    <%if !current_user%>
+      <li class="span4">
+        <div class="thumbnail">
+          <a href=<%=new_user_session_path%> class="thumbnail" rel="tooltip" data-original-title="Sign in to edit all information" data-placement="bottom">
+            <%= image_tag("bw2.jpg", :class => "img-responsive", :alt =>"Responsive image") %>
+          </a>
+        </div>
+      </li>
+    <%else%>
+    <li class="span1">
+      <a href="http://gravatar.com/emails/" class="thumbnail" rel="tooltip" data-original-title="Edit your picture" data-placement="bottom">
+        <%= image_tag(user_avatar_url(current_user, size: 75), :class => "img-responsive", :alt =>"Responsive image") %>
+      </a>
+    </li>
+    <li class="span3">
+      <div class="thumbnail">
+        <a href=<%="#{edit_board_path(current_user.person.boards.first)}"%> class="thumbnail" rel="tooltip" data-original-title="Edit your board's location" data-placement="bottom">
+          <%= image_tag(google_maps_image(current_user.person.boards.first, {width: 450, height: 300}), :class => "img-responsive", :alt =>"Responsive image") %>
+        </a>
+        <h4>Need to review board location first?</h4>
+        <p>We think your first board is around here (<%="#{current_user.person.boards.first.address}"%>). Feel free to edit this and all your other board location.</p>
+        <p><a href=<%="#{edit_board_path(current_user.person.boards.first)}"%> class="btn btn-primary">Edit</a> <a href=<%="#{boards_path}"%> class="btn">View all your boards</a></p>
+      </div>
+    </li>
+    <%end%>
+  </ul>
+</div>
