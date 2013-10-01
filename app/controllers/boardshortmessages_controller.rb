@@ -28,7 +28,7 @@ class BoardshortmessagesController < ApplicationController
     @boardshortmessage = Boardshortmessage.new(boardshortmessage_params)
     respond_to do |format|
       if @boardshortmessage.save && Boardshortmessage.encode_4_board(@boardshortmessage)
-        format.html { redirect_to @boardshortmessage, notice: 'Boardshortmessage was successfully created.' }
+        format.html { redirect_to boardshortmessages_url, notice: 'Boardshortmessage was successfully created.' }
         format.json { render action: 'show', status: :created, location: @boardshortmessage }
       else
         format.html { render action: 'new' }
@@ -41,7 +41,7 @@ class BoardshortmessagesController < ApplicationController
   def update
     respond_to do |format|
       if @boardshortmessage.update(boardshortmessage_params) && Boardshortmessage.encode_4_board(@boardshortmessage)
-        format.html { redirect_to @boardshortmessage, notice: 'Boardshortmessage was successfully updated.' }
+        format.html { redirect_to boardshortmessages_url, notice: 'Boardshortmessage was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
