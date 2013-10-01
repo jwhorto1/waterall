@@ -1,9 +1,11 @@
-<h1>Listing Short Messages</h1>
+<div class="page-header">
+  <h1>Recent Configuration <small> Activity listed in seconds</small></h1>
+</div>
+
 
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Board</th>
       <th>Channel 1</th>
       <th>Channel 2</th>
       <th>Channel 3</th>
@@ -22,16 +24,15 @@
   <tbody>
     <% @boardshortmessages.each do |boardshortmessage| %>
       <tr>
-        <td><%= boardshortmessage.board_id %></td>
-        <td><%= boardshortmessage.channel1_on_in_seconds %></td>
-        <td><%= boardshortmessage.channel2_on_in_seconds %></td>
-        <td><%= boardshortmessage.channel3_on_in_seconds %></td>
-        <td><%= boardshortmessage.channel4_on_in_seconds %></td>
-        <td><%= boardshortmessage.channel5_on_in_seconds %></td>
-        <td><%= boardshortmessage.channel6_on_in_seconds %></td>
-        <td><%= boardshortmessage.channel7_on_in_seconds %></td>
-        <td><%= boardshortmessage.channel8_on_in_seconds %></td>
-        <td><%= boardshortmessage.date.to_formatted_s(:long) %></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel1_on_in_seconds %></span></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel2_on_in_seconds %></span></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel3_on_in_seconds %></span></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel4_on_in_seconds %></span></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel5_on_in_seconds %></span></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel6_on_in_seconds %></span></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel7_on_in_seconds %></span></td>
+        <td><span class="badge badge-success"><%= boardshortmessage.channel8_on_in_seconds %></span></td>
+        <td><span class="label"><%= boardshortmessage.date.to_formatted_s(:long) %></span></td>
         <!-- <td><%= link_to 'Show', boardshortmessage %></td> -->
         <td><%= link_to 'Edit', edit_boardshortmessage_path(boardshortmessage) %></td>
         <!-- <td><%= link_to 'Destroy', boardshortmessage, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
@@ -76,4 +77,4 @@
   </div>
 </div>
 
-<%= link_to 'New Boardshortmessage', new_boardshortmessage_path %>
+<!-- <%= link_to 'New Boardshortmessage', new_boardshortmessage_path %> -->
