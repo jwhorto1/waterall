@@ -50,10 +50,10 @@
           <div class="container nav-collapse">            
             <ul class="nav">              
               <li id="tooltip"><%= link_to "Home", "/"  %></li>
-              <li><%= link_to "Live Config", "/boardshortmessages"  %></li>
-              <li><%= link_to "Buy", "/"  %></li>
-              <li><%= link_to "About", "/"  %></li>
-              <li><%= link_to "Contact", "/"  %></li>
+              <li><%= link_to "Live config", "/boardshortmessages"  %></li>
+              <li><%= link_to "Buy", "http://www.symp1e.com"  %></li>
+              <li><%= link_to "About", "http://symp1e.com/about-symp1e/"  %></li>
+              <li><%= link_to "Contact", "http://symp1e.com/about-symp1e/"  %></li>
               
               <% if user_signed_in? %>
               <!-- Single button -->
@@ -69,13 +69,9 @@
                 </ul>
               </div>
               <% else %>
-                  <button type="button" class="btn btn-default navbar-btn">
-                    <%= link_to "Sign in", new_user_session_path %>
-                  </button>
-                  <button type="button" class="btn btn-default navbar-btn">
-                    <span class="glyphicon glyphicon-cloud"></span>
-                    <%= link_to "Sign up", new_user_registration_path %>
-                  </button>
+
+                    <li><%= link_to "Sign in", new_user_session_path%></li>
+                    <li><%= link_to "Sign up", new_user_registration_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
