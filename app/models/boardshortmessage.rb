@@ -41,7 +41,15 @@ class Boardshortmessage < ActiveRecord::Base
     ascii_converted
   end
   def add_leading(number)
-    "0#{number}"
+    if "0#{number}".size == 2
+      "0#{number}"
+    elsif "0#{number}".size < 2
+      add_leading("0#{number}")
+    else
+      "00"
+    end
+      
+    
   end
   def date_conversion(boardsm)
     dates = ["year", "month", "day", "hour", "minute", "second"]
