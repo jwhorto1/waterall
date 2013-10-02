@@ -48,7 +48,7 @@ class BoardsController < ApplicationController
   def update
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to edit_user_registration_path, notice: 'Board was successfully updated.' }
+        format.html { redirect_to static_dashboard_path, notice: 'Board was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -75,6 +75,6 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.require(:board).permit(:address, :zipcode, :boardnumber, :boardmodel)
+      params.require(:board).permit(:address, :zipcode, :boardnumber, :boardmodel, :name, :description, :image)
     end
 end
