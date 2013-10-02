@@ -80,31 +80,8 @@
 
     <div class="container">
         <div class="row-fluid">
-          <%if !current_user%>
-            <%= bootstrap_flash %>
-            <%= yield %>
-          <%else%>
-            <div class="span9">
-              <%= bootstrap_flash %>
-              <%= yield %>
-            </div>
-            <div class="span3">
-              <div class="well sidebar-nav">
-                <h3>Waterall channels</h3>
-                <ul class="nav nav-list">
-                  <li class="nav-header">View channel schedule</li>
-                  <li><%= link_to "Channel 1", "/static/tos"  %></li>
-                  <li><%= link_to "Channel 2", "/static/tos"  %></li>
-                  <li><%= link_to "Channel 3", "/static/tos"  %></li>
-                  <li><%= link_to "Channel 4", "#"  %></li>
-                  <li><%= link_to "Channel 5", "#"  %></li>
-                  <li><%= link_to "Channel 6", "#"  %></li>
-                  <li><%= link_to "Channel 7", "#"  %></li>
-                  <li><%= link_to "Channel 8", "#"  %></li>
-                </ul>
-              </div><!--/.well -->
-            </div><!--/span-->
-          <%end%>
+          <%= bootstrap_flash %>
+          <%= yield %>
         </div><!--/row-->
 
       <footer><br/>

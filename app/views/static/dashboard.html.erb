@@ -1,4 +1,3 @@
-
 <% userboards = Board.order(:id).all %>
 <%span = "span3"%>
   <ul class="thumbnails">
@@ -10,7 +9,7 @@
           <a href=<%="#{edit_board_path(board)}"%> class="thumbnail" rel="tooltip" data-original-title="Edit your board" data-placement="bottom">
             <%= image_tag("#{board.image}", :class => "img-responsive", :alt =>"Responsive image") %>
           </a>
-          <%= render 'static/dashboard/weather' %>          
+          <%= render 'static/dashboard/weather', :board => board %>          
           <h3 style="align:center;"><%=board.name%></h3>
           <p><%=board.description%></p>
           <p><a href=<%="#{edit_board_path(board)}"%> class="btn btn-primary">Edit</a> <a href=<%="#{boards_path}"%> class="btn">View all your boards</a></p>
