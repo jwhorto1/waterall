@@ -9,7 +9,10 @@
   <div class="media-body">
     <h4 class="media-heading"><span class="label label-warning"><%=@weather['currently']['summary']%></span> <%=@state_city['city'].capitalize%>, <%=@state_city['state']%></h4>
     <p>Chance of rain <span class="label label-info"><%=@weather['currently']['precipProbability']%>%</span></p>
-    <p>Humidity <span class="label label-info"><%=@weather['currently']['humidity']%></span></p>
+    <p>Humidity <span class="label label-info"><%=@weather['currently']['humidity'] * 100%>%</span></p>
+    <p>Cloud Cover <span class="label label-info"><%=@weather['currently']['cloudCover'] * 100%>%</span></p>
+    <p>Wind Speed <span class="label label-info"><%=@weather['currently']['cloudCover'] * 100%>%</span></p>    
+        
   </div>
 </div>
 
