@@ -1,4 +1,6 @@
 Waterall::Application.routes.draw do
+  resources :channels
+
   resources :boardshortmessages
 
   resources :boards
