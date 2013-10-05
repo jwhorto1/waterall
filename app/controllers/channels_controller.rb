@@ -69,6 +69,6 @@ class ChannelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def channel_params
-      params.require(:channel).permit(:board_id, :name, :number)
+      params.require(:channel).permit(:board_id, :name, :number, :channel_image, :remote_channel_image_url)
     end
 end

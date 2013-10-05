@@ -1,4 +1,4 @@
-<%= form_for(@channel) do |f| %>
+<%= form_for @channel, :html => {:multipart => true} do |f| %>
   <% if @channel.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
@@ -23,6 +23,18 @@
     <%= f.label :number %><br>
     <%= f.number_field :number %>
   </div>
+  <div class="field">
+    <%= image_tag(@channel.channel_image_url(:thumb)) if @channel.channel_image? %>
+    <%= f.label :channel_image %><br>
+    <%= f.file_field :channel_image %>
+    <%= f.hidden_field :channel_image_cache %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :remote_channel_image_url, "or image URL" %><br>
+    <%= f.text_field :remote_channel_image_url %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

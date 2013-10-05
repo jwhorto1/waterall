@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131002062743) do
+ActiveRecord::Schema.define(version: 20131004225024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 20131002062743) do
     t.integer  "willsend",                 default: 8888, null: false
     t.integer  "checksum",                 default: 8888, null: false
     t.string   "concatinated_board_ascii", default: "",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "channels", force: true do |t|
+    t.integer  "board_id"
+    t.integer  "number"
+    t.string   "name"
+    t.string   "channel_image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
