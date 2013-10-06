@@ -1,19 +1,27 @@
 # encoding: utf-8
+require 'carrierwave/processing/mime_types'
 
 class ChannelUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
+  # include CarrierWave::MimeTypes
+  # process :set_content_type
+  
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  #storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+     begin
+       "#{Rails.env}/#{model.board.person.id}-#{model.board.person.first_name.gsub(/[^0-9a-z]/i, '')}-#{model.board.person.last_name.gsub(/[^0-9a-z]/i, '')}/#{model.board.name.gsub(/[^0-9a-z]/i, '')}"
+     rescue
+      "#{Rails.env}/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+     end
   end
 
   version :thumb do
@@ -40,11 +48,13 @@ class ChannelUploader < CarrierWave::Uploader::Base
   # end
 
   # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
-
+  def extension_white_list
+    %w(jpg jpeg gif png TIFF BMP)
+  end
+  def default_url
+    "/assets/boardWiFi.png"
+    #"/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  end
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
