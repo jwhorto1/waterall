@@ -5,8 +5,8 @@ class ChannelUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
-  # include CarrierWave::MimeTypes
-  # process :set_content_type
+  include CarrierWave::MimeTypes
+  process :set_content_type
   
   # include CarrierWave::MiniMagick
 
@@ -20,7 +20,7 @@ class ChannelUploader < CarrierWave::Uploader::Base
      begin
        "#{Rails.env}/#{model.board.person.id}-#{model.board.person.first_name.gsub(/[^0-9a-z]/i, '')}-#{model.board.person.last_name.gsub(/[^0-9a-z]/i, '')}/#{model.board.name.gsub(/[^0-9a-z]/i, '')}"
      rescue
-      "#{Rails.env}/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "#{Rails.env}/orphan-uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
      end
   end
 
