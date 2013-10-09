@@ -1,19 +1,14 @@
 # encoding: utf-8
 require 'carrierwave/processing/mime_types'
-
 class ChannelUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   include CarrierWave::MimeTypes
   process :set_content_type
-  
   # include CarrierWave::MiniMagick
-
   # Choose what kind of storage to use for this uploader:
   #storage :file
   storage :fog
-
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -23,9 +18,15 @@ class ChannelUploader < CarrierWave::Uploader::Base
       "#{Rails.env}/orphan-uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
      end
   end
-
   version :thumb do
-    process :resize_to_limit => [200, 200]
+    process :resize_to_fill => [256, 200]
+    # process :resize_to_limit => [256, 200]    
+  end
+  version :rec do
+    process :resize_to_fill => [64, 100]
+  end
+  def default_url
+    ActionController::Base.helpers.asset_path("boardWiFi.jpg")
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -51,10 +52,11 @@ class ChannelUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png TIFF BMP)
   end
-  def default_url
-    "/assets/boardWiFi.png"
-    #"/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  end
+  # def default_url
+  #   "/assets/boardWiFi.jpg"
+  #   #ActionController::Base.helpers.asset_path("fallback/" +  "boardWiFi.jpg")
+  #   #"/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  # end
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
