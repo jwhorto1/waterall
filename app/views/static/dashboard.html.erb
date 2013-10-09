@@ -9,9 +9,7 @@
             <%= image_tag("#{board.image}", :class => "img-responsive", :alt =>"Responsive image") %>
           </a>
           <%= render 'static/dashboard/weather', :board => board %>          
-          <h3 style="align:center;"><%=board.name%></h3>
-          <p><%=board.description%></p>
-          <p><a href=<%="#{edit_board_path(board)}"%> class="btn btn-primary">Edit</a> <a href=<%="#{boards_path}"%> class="btn">View all your boards</a></p>
+          <%= render 'static/dashboard/channels', :board => board %>          
         </div>
       </li>
     <%end%>

@@ -1,0 +1,8 @@
+<h3 style="align:center;"><%=board.name%></h3>
+<p><%=board.description%></p>
+<%board.channels.each_with_index do |channel, i|%>
+  <a href=<%="#{channel_path(channel)}"%> class="btn">Channel <%=i+1%></a>
+<%end%>
+<p><a href=<%="#{edit_board_path(board)}"%> class="btn btn-primary">Edit</a> <a href=<%="#{boards_path}"%> class="btn">View all your boards</a></p>
+
+
