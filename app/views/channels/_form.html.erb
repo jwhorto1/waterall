@@ -1,0 +1,44 @@
+<%= form_for @channel, :html => {:multipart => true} do |f| %>
+  <% if @channel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
+      <ul>
+      <% @channel.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="span4">
+    <div class="field">
+      <%= f.label :board_id %>
+      <%= f.collection_select :board_id, current_user.person.boards, :id, :name %>
+    </div>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :number %>
+      <%= f.number_field :number %>
+    </div>
+  </div>
+
+  <div class="span4">
+    <div class="field">
+      <%= render 'channels/subviews/channel_image', :channel => @channel %>
+      <%= f.file_field :channel_image %>
+      <%= f.hidden_field :channel_image_cache %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :remote_channel_image_url, "or image URL" %>
+      <%= f.text_field :remote_channel_image_url %>
+    </div>
+  </div>
+  <div class="span11">
+    <div class="actions">
+      <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
+    </div>
+  </div>
+<% end %>

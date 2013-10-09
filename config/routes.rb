@@ -1,4 +1,6 @@
 Waterall::Application.routes.draw do
+  resources :channels
+
   resources :boardshortmessages
 
   resources :boards
@@ -13,9 +15,12 @@ Waterall::Application.routes.draw do
   get "static/social"
   get "static/tos"
   get "static/blog"
+  get "static/dashboard"
+  
   resources :roles
   #devise_for :users
   devise_for :users, :controllers => { :registrations => "users/registrations" }  
+  get '/dashboard' => 'static#dashboard'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

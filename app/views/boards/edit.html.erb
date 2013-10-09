@@ -1,6 +1,10 @@
 <h1>Editing board</h1>
+<div class="span4">
+  <%= render 'form' %>
+</div>
 
-<%= render 'form' %>
+<div class="span4">
+  <%= render 'boards/subviews/channels', :board => @board %>          
+</div>
 
-<%= link_to 'Show', @board %> |
-<%= link_to 'Back', boards_path %>
+

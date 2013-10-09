@@ -11,25 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930040451) do
+ActiveRecord::Schema.define(version: 20131004225024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "boards", force: true do |t|
-    t.float    "latitude",      default: 0.0, null: false
-    t.float    "longitude",     default: 0.0, null: false
-    t.string   "address",       default: "",  null: false
-    t.string   "zipcode",       default: "",  null: false
-    t.string   "boardnumber",   default: "",  null: false
-    t.string   "boardmodel",    default: "",  null: false
-    t.integer  "person_id",     default: 0,   null: false
-    t.integer  "channels",      default: 0,   null: false
-    t.string   "ip",            default: "",  null: false
-    t.string   "status",        default: "",  null: false
-    t.string   "googlemap_url", default: "",  null: false
+    t.float    "latitude",      default: 0.0,                         null: false
+    t.float    "longitude",     default: 0.0,                         null: false
+    t.string   "address",       default: "",                          null: false
+    t.string   "zipcode",       default: "",                          null: false
+    t.string   "boardnumber",   default: "",                          null: false
+    t.string   "boardmodel",    default: "",                          null: false
+    t.integer  "person_id",     default: 0,                           null: false
+    t.integer  "channels",      default: 0,                           null: false
+    t.string   "ip",            default: "",                          null: false
+    t.string   "status",        default: "",                          null: false
+    t.string   "googlemap_url", default: "",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",          default: "",                          null: false
+    t.text     "description",   default: "",                          null: false
+    t.string   "image",         default: "default_channel_image.png", null: false
   end
 
   create_table "boardshortmessages", force: true do |t|
@@ -64,6 +67,15 @@ ActiveRecord::Schema.define(version: 20130930040451) do
     t.integer  "willsend",                 default: 8888, null: false
     t.integer  "checksum",                 default: 8888, null: false
     t.string   "concatinated_board_ascii", default: "",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "channels", force: true do |t|
+    t.integer  "board_id"
+    t.integer  "number"
+    t.string   "name"
+    t.string   "channel_image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
