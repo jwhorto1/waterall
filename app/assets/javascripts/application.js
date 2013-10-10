@@ -21,6 +21,11 @@ $(document).ready(function() {
          // http://stackoverflow.com/questions/10436231/tooltips-with-twitter-bootstrap
          $('[rel=tooltip]').tooltip()
   });
+  $("#activate-channel-link").click(function(){  
+         $("#cctivate-channel-box").toggle("slow");
+         // http://stackoverflow.com/questions/10436231/tooltips-with-twitter-bootstrap
+         $('[rel=tooltip]').tooltip()
+  });
 })
 
 

@@ -1,6 +1,7 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
+  
   # GET /channels
   # GET /channels.json
   def index
@@ -28,7 +29,7 @@ class ChannelsController < ApplicationController
 
     respond_to do |format|
       if @channel.save
-        format.html { redirect_to @channel, notice: 'Channel was successfully created.' }
+        format.html { redirect_to @channel, notice: "Channel #{@channel.name} was successfully created." }
         format.json { render action: 'show', status: :created, location: @channel }
       else
         format.html { render action: 'new' }
@@ -42,7 +43,7 @@ class ChannelsController < ApplicationController
   def update
     respond_to do |format|
       if @channel.update(channel_params)
-        format.html { redirect_to @channel, notice: 'Channel was successfully updated.' }
+        format.html { redirect_to edit_board_path(@channel.board), notice: "Channel \'#{@channel.name}\' was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

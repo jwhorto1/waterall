@@ -3,6 +3,7 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Name</th>
       <th>Address</th>
       <th>Zipcode</th>
       <th></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @boards.each do |board| %>
       <tr>
+        <td><%= board.name %></td>
         <td><%= board.address %></td>
         <td><%= board.zipcode %></td>
         <td><%= link_to 'Show', board %></td>

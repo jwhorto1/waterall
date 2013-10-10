@@ -13,7 +13,9 @@ class ChannelUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
      begin
-       "#{Rails.env}/#{model.board.person.id}-#{model.board.person.first_name.gsub(/[^0-9a-z]/i, '')}-#{model.board.person.last_name.gsub(/[^0-9a-z]/i, '')}/#{model.board.name.gsub(/[^0-9a-z]/i, '')}"
+       cn = model.number.to_s.length < 1 ? 'n_a' : model.number.to_s
+       cn = "#{cn}-id#{model.id}"
+       "#{Rails.env}/#{model.board.person.id}-#{model.board.person.first_name.gsub(/[^0-9a-z]/i, '')}-#{model.board.person.last_name.gsub(/[^0-9a-z]/i, '')}/#{model.board.name.gsub(/[^0-9a-z]/i, '')}/#{cn}"
      rescue
       "#{Rails.env}/orphan-uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
      end
@@ -26,7 +28,7 @@ class ChannelUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [64, 100]
   end
   def default_url
-    ActionController::Base.helpers.asset_path("boardWiFi.jpg")
+    ActionController::Base.helpers.asset_path([version_name, "channel_default.png"].compact.join('_'))
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
