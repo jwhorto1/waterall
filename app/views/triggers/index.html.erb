@@ -1,0 +1,49 @@
+<h1>Listing triggers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Int</th>
+      <th>G</th>
+      <th>Scaffold</th>
+      <th>Trigger</th>
+      <th>Int</th>
+      <th>Time</th>
+      <th>Int</th>
+      <th>Int</th>
+      <th>String</th>
+      <th>Bool</th>
+      <th>String</th>
+      <th>Text</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @triggers.each do |trigger| %>
+      <tr>
+        <td><%= trigger.int %></td>
+        <td><%= trigger.g %></td>
+        <td><%= trigger.scaffold %></td>
+        <td><%= trigger.trigger %></td>
+        <td><%= trigger.int %></td>
+        <td><%= trigger.time %></td>
+        <td><%= trigger.int %></td>
+        <td><%= trigger.int %></td>
+        <td><%= trigger.string %></td>
+        <td><%= trigger.bool %></td>
+        <td><%= trigger.string %></td>
+        <td><%= trigger.text %></td>
+        <td><%= link_to 'Show', trigger %></td>
+        <td><%= link_to 'Edit', edit_trigger_path(trigger) %></td>
+        <td><%= link_to 'Destroy', trigger, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trigger', new_trigger_path %>

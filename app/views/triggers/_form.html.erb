@@ -1,0 +1,65 @@
+<%= form_for(@trigger) do |f| %>
+  <% if @trigger.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trigger.errors.count, "error") %> prohibited this trigger from being saved:</h2>
+
+      <ul>
+      <% @trigger.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :int %><br>
+    <%= f.text_field :int %>
+  </div>
+  <div class="field">
+    <%= f.label :g %><br>
+    <%= f.text_field :g %>
+  </div>
+  <div class="field">
+    <%= f.label :scaffold %><br>
+    <%= f.text_field :scaffold %>
+  </div>
+  <div class="field">
+    <%= f.label :trigger %><br>
+    <%= f.text_field :trigger %>
+  </div>
+  <div class="field">
+    <%= f.label :int %><br>
+    <%= f.text_field :int %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br>
+    <%= f.text_field :time %>
+  </div>
+  <div class="field">
+    <%= f.label :int %><br>
+    <%= f.text_field :int %>
+  </div>
+  <div class="field">
+    <%= f.label :int %><br>
+    <%= f.text_field :int %>
+  </div>
+  <div class="field">
+    <%= f.label :string %><br>
+    <%= f.text_field :string %>
+  </div>
+  <div class="field">
+    <%= f.label :bool %><br>
+    <%= f.text_field :bool %>
+  </div>
+  <div class="field">
+    <%= f.label :string %><br>
+    <%= f.text_field :string %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_field :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
