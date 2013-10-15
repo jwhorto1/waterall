@@ -69,6 +69,7 @@ class TriggersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trigger_params
-      params.require(:trigger).permit(:int, :g, :scaffold, :trigger, :int, :time, :int, :int, :string, :bool, :string, :text)
+      params.require(:trigger).permit(:weekday_id, :duration, :weekday_int, :weekday_string, :short_status, :details)
     end
 end
+

@@ -1,41 +1,28 @@
 <h1>Listing triggers</h1>
 
-<table>
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Int</th>
-      <th>G</th>
-      <th>Scaffold</th>
-      <th>Trigger</th>
-      <th>Int</th>
-      <th>Time</th>
-      <th>Int</th>
-      <th>Int</th>
-      <th>String</th>
-      <th>Bool</th>
-      <th>String</th>
-      <th>Text</th>
+      <th>ID</th>
+      <th>Channel id</th>
+      <th>Weekday id</th>
+      <th>On at</th>
+      <th>Duration</th>
+      <th>Status</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @triggers.each do |trigger| %>
       <tr>
-        <td><%= trigger.int %></td>
-        <td><%= trigger.g %></td>
-        <td><%= trigger.scaffold %></td>
-        <td><%= trigger.trigger %></td>
-        <td><%= trigger.int %></td>
-        <td><%= trigger.time %></td>
-        <td><%= trigger.int %></td>
-        <td><%= trigger.int %></td>
-        <td><%= trigger.string %></td>
-        <td><%= trigger.bool %></td>
-        <td><%= trigger.string %></td>
-        <td><%= trigger.text %></td>
+        <td><%= trigger.id %></td>
+        <td><%= trigger.channel_id %></td>
+        <td><%= trigger.weekday_id %></td>
+        <td><%= trigger.on_at %></td>
+        <td><%= trigger.duration %></td>
+        <td><%= trigger.short_status %></td>
         <td><%= link_to 'Show', trigger %></td>
         <td><%= link_to 'Edit', edit_trigger_path(trigger) %></td>
         <td><%= link_to 'Destroy', trigger, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -2,7 +2,6 @@
   <% if @trigger.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@trigger.errors.count, "error") %> prohibited this trigger from being saved:</h2>
-
       <ul>
       <% @trigger.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,56 +9,49 @@
       </ul>
     </div>
   <% end %>
-
+<% test = {"three" => 3, "four" => 4, "five" => 5} %>
   <div class="field">
-    <%= f.label :int %><br>
-    <%= f.text_field :int %>
+    <%= f.label :duration %>
+    <%= f.select :duration, test %>
   </div>
+  
   <div class="field">
-    <%= f.label :g %><br>
-    <%= f.text_field :g %>
+    <%= f.label :weekday_string %>
+    <%= f.text_field :weekday_string %>
   </div>
+  
   <div class="field">
-    <%= f.label :scaffold %><br>
-    <%= f.text_field :scaffold %>
+    <%= f.label :weekday_string %>
+    <%= f.text_field :weekday_string %>
   </div>
+  
   <div class="field">
-    <%= f.label :trigger %><br>
-    <%= f.text_field :trigger %>
+    <%= f.label :weekday_string %>
+    <%= f.text_field :weekday_string %>
   </div>
+  
   <div class="field">
-    <%= f.label :int %><br>
-    <%= f.text_field :int %>
+    <%= f.label :weekday_string %>
+    <%= f.text_field :weekday_string %>
   </div>
+  
   <div class="field">
-    <%= f.label :time %><br>
-    <%= f.text_field :time %>
+    <%= f.label :weekday_string %>
+    <%= f.text_field :weekday_string %>
   </div>
+  
   <div class="field">
-    <%= f.label :int %><br>
-    <%= f.text_field :int %>
+    <%= f.label :weekday_string %>
+    <%= f.text_field :weekday_string %>
   </div>
+  
   <div class="field">
-    <%= f.label :int %><br>
-    <%= f.text_field :int %>
+    <%= f.label :weekday_string %>
+    <%= f.text_field :weekday_string %>
   </div>
-  <div class="field">
-    <%= f.label :string %><br>
-    <%= f.text_field :string %>
-  </div>
-  <div class="field">
-    <%= f.label :bool %><br>
-    <%= f.text_field :bool %>
-  </div>
-  <div class="field">
-    <%= f.label :string %><br>
-    <%= f.text_field :string %>
-  </div>
-  <div class="field">
-    <%= f.label :text %><br>
-    <%= f.text_field :text %>
-  </div>
+  
   <div class="actions">
-    <%= f.submit %>
+    <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
   </div>
+  
 <% end %>
