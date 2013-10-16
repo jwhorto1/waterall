@@ -34,6 +34,7 @@ class BoardsController < ApplicationController
     end
     respond_to do |format|
       if @board.save
+        Board.initialize_dependencies(@board)#TODO add a delay here
         format.html { redirect_to @board, notice: 'Board was successfully created.' }
         format.json { render action: 'show', status: :created, location: @board }
       else

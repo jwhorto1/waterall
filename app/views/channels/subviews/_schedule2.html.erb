@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1> <small><%=channel.name%> weekly schedule</small></h1>
+</div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%days = channel.arrayarize_based_on_day(channel.triggers)%>
+      <tr>
+        <%7.times do |i|%>
+          <%c = channel.pop_check(days[i].pop) %>
+          <% if c.on_at != nil%>
+            <td>
+              <div class="btn-group dropup">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%=c.to_formatted_watering(c.on_at)%>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"> <span class="label badge-success">Duration: <%=c.duration%> min</span></a></li>
+                  <li><a href="#"> <span class="label">Status: as scheduled</span></a></li>
+                  <li class="divider"></li>
+                  <li><%= link_to 'Edit', edit_trigger_path(c) %></li>
+                  <li><%= link_to 'Delete', c, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                </ul>
+              </div>
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>  
+        <%end%>
+      </tr>
+
+    </tbody>
+  </table>
+<br>

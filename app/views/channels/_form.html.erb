@@ -35,7 +35,9 @@
       <%= f.label :remote_channel_image_url, "or image URL" %>
       <%= f.text_field :remote_channel_image_url %>
     </div>
+    <%= render 'channels/subviews/schedule2', :channel => @channel %>    
   </div>
+  
   <div class="span11">
     <div class="actions">
       <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
