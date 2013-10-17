@@ -9,49 +9,38 @@
       </ul>
     </div>
   <% end %>
-<% test = {"three" => 3, "four" => 4, "five" => 5} %>
+<% test = {"5 Minutes" => 5, "10 Minutes" => 10, "15 Minutes" => 15, "20 Minutes" => 20, "25 Minutes" => 25, "30 Minutes" => 30} %>
   <div class="field">
     <%= f.label :duration %>
     <%= f.select :duration, test %>
   </div>
-  
   <div class="field">
-    <%= f.label :weekday_string %>
-    <%= f.text_field :weekday_string %>
+    <div id="timepicker" class="input-append date">
+      <%= f.label :on_at, "Start time" %>
+      <%= f.text_field :on_at, :class => "input-append date", :data => { :format => "hh:mm" }%>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-time">
+        </i>
+      </span>
+    </div>
   </div>
-  
   <div class="field">
-    <%= f.label :weekday_string %>
-    <%= f.text_field :weekday_string %>
+    <%= f.label :channel_id, "Channel" %>
+    <%= f.collection_select :channel_id, current_user.person.boards, :id, :name %>
   </div>
-  
-  <div class="field">
-    <%= f.label :weekday_string %>
-    <%= f.text_field :weekday_string %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :weekday_string %>
-    <%= f.text_field :weekday_string %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :weekday_string %>
-    <%= f.text_field :weekday_string %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :weekday_string %>
-    <%= f.text_field :weekday_string %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :weekday_string %>
-    <%= f.text_field :weekday_string %>
-  </div>
+
   
   <div class="actions">
     <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
   </div>
   
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $('#timepicker').datetimepicker({
+      pickDate: false,
+      pickSeconds: false,
+    });
+  });
+</script>

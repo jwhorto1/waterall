@@ -20,5 +20,12 @@ class Channel < ActiveRecord::Base
     else
       trigger
     end
-  end
+  end#pop_check
+  def find_longest_chain(aa)
+    longest = 0
+    aa.count.times do |i|
+      longest = aa[i].count if aa[i].count > longest
+    end
+    longest
+  end#find longest chain
 end#channel class

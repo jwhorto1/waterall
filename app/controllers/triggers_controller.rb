@@ -54,9 +54,10 @@ class TriggersController < ApplicationController
   # DELETE /triggers/1
   # DELETE /triggers/1.json
   def destroy
+    temp = @trigger
     @trigger.destroy
     respond_to do |format|
-      format.html { redirect_to triggers_url }
+      format.html { redirect_to edit_channel_url(temp.channel) }
       format.json { head :no_content }
     end
   end
@@ -69,7 +70,7 @@ class TriggersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trigger_params
-      params.require(:trigger).permit(:weekday_id, :duration, :weekday_int, :weekday_string, :short_status, :details)
+      params.require(:trigger).permit(:weekday_id, :on_at, :duration, :weekday_int, :weekday_string, :short_status, :details)
     end
 end
 

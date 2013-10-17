@@ -8,12 +8,13 @@ class Board < ActiveRecord::Base
       puts "creating #{n.ordinalize} board channel"
       c = Channel.new
       c.board_id = board.id
-      c.number   = n
+      c.number   = n + 1
       c.name     = "#{(n+1).ordinalize} channel"
       if c.save
         puts "saved #{n.ordinalize} channel"
         board.create_day_and_triggers(c)
       else
+        raise
         puts "COULD NOT save #{n.ordinalize} channel"
         puts c.errors.full_messages
       end#if
@@ -32,7 +33,7 @@ class Board < ActiveRecord::Base
        t.weekday_string = Date::DAYNAMES[x]
        if t.save
          #Greeeat!
-         t2 = t.dup!
+         t2 = t.dup
          t2.on_at += 11.hours
          t2.save
        else
