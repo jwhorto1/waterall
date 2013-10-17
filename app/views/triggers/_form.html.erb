@@ -9,10 +9,9 @@
       </ul>
     </div>
   <% end %>
-<% test = {"5 Minutes" => 5, "10 Minutes" => 10, "15 Minutes" => 15, "20 Minutes" => 20, "25 Minutes" => 25, "30 Minutes" => 30} %>
   <div class="field">
     <%= f.label :duration %>
-    <%= f.select :duration, test %>
+    <%= f.number_field :duration %>
   </div>
   <div class="field">
     <div id="timepicker" class="input-append date">
