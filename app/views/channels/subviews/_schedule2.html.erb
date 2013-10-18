@@ -19,11 +19,11 @@
         <tr>
           <%7.times do |i|%>
             <%c = channel.pop_check(days[i].pop) %>
-            <% if c.on_at != nil%>
+            <% if c.start_time != nil%>
               <td>
                 <div class="btn-group dropup">
                   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    <%=c.to_formatted_watering(c.on_at)%>
+                    <%=c.to_formatted_watering(c.start_time)%>
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">

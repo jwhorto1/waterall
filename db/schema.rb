@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131014185607) do
+ActiveRecord::Schema.define(version: 20131018052620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20131014185607) do
   create_table "triggers", force: true do |t|
     t.integer  "channel_id",     default: 0,    null: false
     t.integer  "weekday_id",     default: 0,    null: false
-    t.time     "on_at"
+    t.time     "start_time"
     t.integer  "duration",       default: 0,    null: false
     t.integer  "weekday_int"
     t.string   "weekday_string", default: "",   null: false

@@ -29,7 +29,8 @@ class ChannelsController < ApplicationController
 
     respond_to do |format|
       if @channel.save
-        format.html { redirect_to @channel, notice: "Channel #{@channel.name} was successfully created." }
+        Board.create_day_and_triggers(@channel)
+        format.html { redirect_to edit_board_path(@channel.board), notice: "Channel #{@channel.name} was successfully created." }
         format.json { render action: 'show', status: :created, location: @channel }
       else
         format.html { render action: 'new' }

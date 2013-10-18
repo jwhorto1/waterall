@@ -3,7 +3,13 @@
 <p>
   <strong>Duration:</strong>
   <%= @trigger.duration %>
+  <%= @trigger.start_time %>
 </p>
+<p>
+  <strong>Start time:</strong>
+  <%= @trigger.start_time %>
+</p>
+
 
 <%= link_to 'Edit', edit_trigger_path(@trigger) %> |
 <%= link_to 'Back', triggers_path %>

@@ -29,7 +29,7 @@ class TriggersController < ApplicationController
 
     respond_to do |format|
       if @trigger.save
-        format.html { redirect_to @trigger, notice: 'Trigger was successfully created.' }
+        format.html { redirect_to edit_channel_path(@trigger.channel), notice: 'Trigger was successfully created.' }
         format.json { render action: 'show', status: :created, location: @trigger }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class TriggersController < ApplicationController
   def update
     respond_to do |format|
       if @trigger.update(trigger_params)
-        format.html { redirect_to @trigger, notice: 'Trigger was successfully updated.' }
+        format.html { redirect_to edit_channel_path(@trigger.channel), notice: 'Trigger was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,7 +62,6 @@ class TriggersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trigger
@@ -71,7 +70,7 @@ class TriggersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trigger_params
-      params.require(:trigger).permit(:weekday_id, :on_at, :duration, :weekday_int, :weekday_string, :short_status, :details)
+      params.require(:trigger).permit(:channel_id, :weekday_id, :start_time, :duration, :weekday_int, :weekday_string, :short_status, :details)
     end
 end
 
