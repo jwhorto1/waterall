@@ -1,0 +1,1 @@
+json.extract! @trigger, :channel_id, :weekday_id, :weekday_int, :weekday_string, :start_time, :duration, :short_status, :details, :created_at, :updated_at

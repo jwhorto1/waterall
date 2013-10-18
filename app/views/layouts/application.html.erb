@@ -49,7 +49,7 @@
           </a>
           <div class="container nav-collapse">            
             <ul class="nav">              
-              <li id="tooltip"><%= link_to "Home", "/"  %></li>
+              <li id="tooltip"><%= link_to "Home", "/dashboard"  %></li>
               <li><%= link_to "Live config", "/boardshortmessages"  %></li>
               <li><%= link_to "Buy", "http://www.symp1e.com"  %></li>
               <li><%= link_to "About", "http://symp1e.com/about-symp1e/"  %></li>
@@ -80,6 +80,7 @@
     </div>
 
     <div class="container">
+      <!-- <%= render_breadcrumbs('>') %> -->
         <div class="row">
           <%= bootstrap_flash %>
           <%= yield %>

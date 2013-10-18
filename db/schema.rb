@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131004225024) do
+ActiveRecord::Schema.define(version: 20131018052620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,20 @@ ActiveRecord::Schema.define(version: 20131004225024) do
   create_table "roles", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "triggers", force: true do |t|
+    t.integer  "channel_id",     default: 0,    null: false
+    t.integer  "weekday_id",     default: 0,    null: false
+    t.time     "start_time"
+    t.integer  "duration",       default: 0,    null: false
+    t.integer  "weekday_int"
+    t.string   "weekday_string", default: "",   null: false
+    t.boolean  "enabled",        default: true, null: false
+    t.string   "short_status",   default: "",   null: false
+    t.text     "details",        default: "",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
