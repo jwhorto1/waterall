@@ -1,0 +1,36 @@
+<h1>Listing triggers</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Channel id</th>
+      <th>Weekday id</th>
+      <th>On at</th>
+      <th>Duration</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @triggers.each do |trigger| %>
+      <tr>
+        <td><%= trigger.id %></td>
+        <td><%= trigger.channel_id %></td>
+        <td><%= trigger.weekday_id %></td>
+        <td><%= trigger.start_time %></td>
+        <td><%= trigger.duration %></td>
+        <td><%= trigger.short_status %></td>
+        <td><%= link_to 'Show', trigger %></td>
+        <td><%= link_to 'Edit', edit_trigger_path(trigger) %></td>
+        <td><%= link_to 'Delete', trigger, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trigger', new_trigger_path %>

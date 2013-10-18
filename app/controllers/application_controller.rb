@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_filter :set_user_time_zone
   protect_from_forgery with: :exception
+  # add_breadcrumb :index, :root_path
   def after_sign_in_path_for(resource_or_scope)
     
     if !(current_user.person.first_name && current_user.person.last_name)

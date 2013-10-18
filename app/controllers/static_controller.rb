@@ -17,4 +17,6 @@ class StaticController < ApplicationController
 
   def blog
   end
+  def dashboard
+  end
 end

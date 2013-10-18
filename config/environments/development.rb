@@ -4,6 +4,10 @@ Waterall::Application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+  # Load heroku vars from local file
+  heroku_env = File.join(Rails.root, 'config/initializers', 'local_heroku_env_vars.rb')
+  load(heroku_env) if File.exists?(heroku_env)
+  
   config.cache_classes = false
 
   # Do not eager load code on boot.
@@ -27,4 +31,5 @@ Waterall::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
 end
