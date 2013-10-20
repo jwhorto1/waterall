@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @board.address %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @board.zipcode %>
+</p>
+<p>
+  <strong>Location Snap Shot</strong>
+  <%= image_tag google_maps_image(@board, {width: 450, height: 300}) %>
+</p>
+
+
+<%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Back', boards_path %>

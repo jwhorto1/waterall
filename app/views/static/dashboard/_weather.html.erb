@@ -1,0 +1,25 @@
+<%state_city = get_state_and_city_from_zipcode(board.zipcode)%>
+<%weather = get_weather_from_lat_long(board.latitude, board.longitude)%>
+
+<!-- http://stackoverflow.com/questions/492951/how-can-i-get-state-and-city-information-from-a-us-zip-code-through-an-online-we -->
+<div class="media" style="border:2px solid; border-color:#E8E8E8; border-radius:5px; padding:7px;">
+  <a class="pull-left" id="skyline">
+    <%= image_tag("weather-icons/#{weather['currently']['icon']}.png", :class => "media-object", :style => "width: 64px; height: 64px;", :title => "Waterall", :alt => "Waterall") %>
+  </a>
+  
+  <div class="media-body">
+    <h4 class="media-heading"><span class="label label-warning"><%=weather['currently']['summary']%></span> <%=state_city['city'].capitalize%>, <%=state_city['state']%></h4>
+    <p><span class="badge badge-success"><%=(weather['currently']['temperature']).round%>°F</span></p>
+    <p>Chance of rain <span class="label label-info"><%=weather['currently']['precipProbability']%>%</span></p>
+    <p>Humidity <span class="label label-info"><%=(weather['currently']['humidity'] * 100).to_i%>%</span></p>
+    <p>Wind <span class="label label-info"><%=(weather['hourly']['data'][0]['windSpeed'].to_f/ 1.609344).round%> mph</span></p>    
+  </div>
+</div>
+<!-- icon: A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night. (Developers should 
+
+https://developer.forecast.io/docs/v2#time_call 
+https://api.forecast.io/forecast/823b48b6f6dd0a89f9d669f34b98ba80/37.8267,-122.423,1380708047
+
+http://blog.forecast.io/forecast-embeds/
+git push heroku -f feature/weather HEAD:master
+-->

@@ -1,0 +1,16 @@
+<% userboards = Board.order(:id).load %>
+<%span = "span3"%>
+  <ul class="thumbnails">
+    <li class="span11">
+    <% userboards.each do |board| %>
+      <li class="<%=span%>">
+        <div class="thumbnail">
+          <a href=<%="#{edit_board_path(board)}"%> class="thumbnail" rel="tooltip" data-original-title="Edit your board" data-placement="bottom">
+            <%= image_tag("#{board.image}", :class => "img-responsive", :alt =>"Responsive image") %>
+          </a>
+          <%= render 'static/dashboard/weather', :board => board %>          
+          <%= render 'static/dashboard/channels', :board => board %>          
+        </div>
+      </li>
+    <%end%>
+  </ul>

@@ -1,0 +1,2 @@
+module BoardshortmessagesHelper
+end

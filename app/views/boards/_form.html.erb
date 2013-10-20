@@ -1,0 +1,37 @@
+<%= form_for(@board) do |f| %>
+  <% if @board.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
+      <ul>
+      <% @board.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :name, "Board name" %> 
+    <%= f.text_field :name, :placeholder => 'Lake Garden' %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :placeholder => 'This garden is managed by Jane from FabulousYard Inc. Make sure to review progress with her weekly.' %>
+  </div>
+  <div class="field">
+    <%= f.label :address, "City and State" %>
+    <%= f.text_field :address, :placeholder => 'Tempe, AZ' %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode, :placeholder => '54321' %>
+  </div>
+  <div class="field">
+    <%= f.label :boardnumber, "Board number" %>
+    <%= f.text_field :boardnumber, :placeholder => 'h4ck3r-342b-890' %>
+  </div>
+  <div class="actions">
+    <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
+  </div>
+  
+<% end %>

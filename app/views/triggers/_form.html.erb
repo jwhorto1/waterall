@@ -1,0 +1,49 @@
+<%= form_for(@trigger) do |f| %>
+  <% if @trigger.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trigger.errors.count, "error") %> prohibited this trigger from being saved:</h2>
+      <ul>
+      <% @trigger.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :duration %>
+    <%= f.number_field :duration %>
+  </div>
+  <div class="field">
+    <div id="timepicker" class="input-append date">
+      <%= f.label :start_time %>
+      <%= f.text_field :start_time, :class => "input-append date", :data => { :format => "hh:mm" }%>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-time">
+        </i>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :channel_id, "Channel" %>
+    <%= f.select :channel_id, @trigger.board_channels(current_user.person.boards.load)%>
+  </div>
+  <div class="field">
+    <%= f.label :weekday_int, "Weekday" %>
+    <%weekdays = {"Sunday" => 0, "Monday" => 1,"Tuesday" => 2, "Wednesday" => 3,"Thursday" => 4, "Friday" => 5, "Saturday" => 6}%>
+    <%= f.select :weekday_int, weekdays%>
+  </div>
+  
+  <div class="actions">
+    <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
+  </div>
+  
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $('#timepicker').datetimepicker({
+      pickDate: false,
+      pickSeconds: false,
+    });
+  });
+</script>

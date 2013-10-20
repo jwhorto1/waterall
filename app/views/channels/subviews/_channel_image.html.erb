@@ -1,0 +1,5 @@
+<div class="thumbnail span2">
+  <a href="#" class="thumbnail" rel="tooltip" data-original-title="Current channel image" data-placement="bottom">
+    <%= image_tag(channel.channel_image_url(:thumb)) if channel.channel_image? %>
+  </a>
+</div>
