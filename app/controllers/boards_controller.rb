@@ -5,7 +5,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    @boards = current_user.person.boards
   end
 
   # GET /boards/1
@@ -27,7 +27,7 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     begin
-    @board.person_id = current_user.person.id || 0
+    current_user.person.boards << @board
     @board.ip = request.ip || 0
     rescue
       #do nothing for now

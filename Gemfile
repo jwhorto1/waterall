@@ -56,12 +56,12 @@ gem 'devise'
 gem 'omniauth-twitter'
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'rspec-rails'
 end
 group :development, :test do
 #  gem 'sqlite3'
   gem 'awesome_print'#, :require => 'ap'
-  gem 'rspec-rails'
   gem 'machinist'
   gem 'better_errors'
   gem 'binding_of_caller'

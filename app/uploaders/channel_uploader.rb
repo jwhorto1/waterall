@@ -15,7 +15,7 @@ class ChannelUploader < CarrierWave::Uploader::Base
      begin
        cn = model.number.to_s.length < 1 ? 'n_a' : model.number.to_s
        cn = "#{cn}-id#{model.id}"
-       "#{Rails.env}/#{model.board.person.id}-#{model.board.person.first_name.gsub(/[^0-9a-z]/i, '')}-#{model.board.person.last_name.gsub(/[^0-9a-z]/i, '')}/#{model.board.name.gsub(/[^0-9a-z]/i, '')}/#{cn}"
+       "#{Rails.env}/#{model.board.people.first.id}-#{model.board.people.first.first_name.gsub(/[^0-9a-z]/i, '')}-#{model.board.people.first.last_name.gsub(/[^0-9a-z]/i, '')}/#{model.board.name.gsub(/[^0-9a-z]/i, '')}/#{cn}"
      rescue
       "#{Rails.env}/orphan-uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
      end

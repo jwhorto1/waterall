@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018052620) do
+ActiveRecord::Schema.define(version: 20131022011622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20131018052620) do
     t.text     "description",   default: "",                          null: false
     t.string   "image",         default: "default_channel_image.png", null: false
   end
+
+  create_table "boards_people", force: true do |t|
+    t.integer "board_id"
+    t.integer "person_id"
+  end
+
+  add_index "boards_people", ["board_id", "person_id"], name: "index_boards_people_on_board_id_and_person_id", using: :btree
 
   create_table "boardshortmessages", force: true do |t|
     t.string   "channel1_on_in_seconds",   default: "0",  null: false
