@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+valid_board:
+  address: Tempe,AZ
+  boardnumber: 1234567890
+  boardmodel: puppyas
+  status: active
+  description: long description may go here
+  name: validboardname
+  zipcode: 85282  
+
+bad_zipcode_board:
+  address: Tempe,AZ
+  boardnumber: 1234567890
+  boardmodel: puppyas
+  status: active
+  name: badzipcodeboardname
+  description: long description may go here
+  zipcode: 00000
+
+no_address_board:
+  boardnumber: 1234567890
+  boardmodel: puppyas
+  status: active
+  description: long description may go here
+  name: badzipcodeboardname
+  zipcode: 85282
+no_name_board:
+  address: tempe, az
+  boardnumber: 1234567890
+  boardmodel: puppyas
+  status: active
+  description: long description may go here
+  zipcode: 85282
+    
+
+  #       :address => :string,
+  #   :boardnumber => :string,
+  #    :boardmodel => :string,
+  #        :status => :string,
+  #   :description => :text,
+
+#      :latitude => :float,
+#     :longitude => :float,
+#       :zipcode => :string,
+#     :person_id => :integer,
+#      :channels => :integer,
+#            :ip => :string,
+# :googlemap_url => :string,
+#    :created_at => :datetime,
+#    :updated_at => :datetime,
+#          :name => :string,
+#         :image => :string

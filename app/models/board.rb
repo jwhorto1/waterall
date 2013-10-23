@@ -3,6 +3,8 @@ class Board < ActiveRecord::Base
   has_and_belongs_to_many :people
   geocoded_by :address
   validate :valid_zipcode
+  validates_presence_of  :address, :name
+  validates_length_of :name, :within => 1..100, :too_long => "can not be longer than 100 characters"
   after_validation :geocode, :if => :address_changed?
   
   def valid_zipcode
