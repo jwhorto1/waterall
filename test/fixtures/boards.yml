@@ -12,6 +12,7 @@ valid_board:
   description: long description may go here
   name: validboardname
   zipcode: 85282  
+  timezone: Pacific Time (US & Canada)
 
 bad_zipcode_board:
   address: Tempe,AZ

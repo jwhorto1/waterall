@@ -33,4 +33,7 @@ Waterall::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  Timezone::Configure.begin do |c|
+    c.username = 'coxaqui'
+  end
 end

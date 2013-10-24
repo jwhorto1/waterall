@@ -8,4 +8,6 @@ class Dailyweather < ActiveRecord::Base
       errors.add(:zipcode, 'is not valid')
     end
   end
+  
+  
 end

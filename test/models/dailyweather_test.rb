@@ -42,6 +42,7 @@ class DailyweatherTest < ActiveSupport::TestCase
     d.valid?
     assert_match /can't be blank/, d.errors[:mintemp].join, "=> Presence error for mintemp not found for daily weather."
   end
+
   test "test invalid without maxtemp" do
     d = dailyweathers(:valid_dailyweather)
     d.maxtemp = nil
@@ -53,5 +54,6 @@ class DailyweatherTest < ActiveSupport::TestCase
     d = dailyweathers(:valid_dailyweather)
     assert d.valid?, "=> all attributes valid but did not save"
   end
-  
+  #-----------------------------------------------
+    
 end

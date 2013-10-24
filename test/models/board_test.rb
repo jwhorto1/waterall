@@ -27,7 +27,15 @@ class BoardTest < ActiveSupport::TestCase
     b.valid?
     assert_match /can not be longer than/, b.errors[:name].join, "=> Length error for name not found on board."
   end
-  
+  test "test I have timezone set up" do
+    b = boards(:valid_board)
+    assert_respond_to b, :timezone
+  end
+  test "invalid without timezone" do
+    b = boards(:valid_board)
+    b.timezone = nil
+    assert !b.valid?, "=> board has no valid timezone."
+  end
 end
 
 #            :id => :integer,

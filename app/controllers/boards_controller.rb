@@ -33,6 +33,8 @@ class BoardsController < ApplicationController
       #do nothing for now
     end
     respond_to do |format|
+      timezone = Timezone::Zone.new :latlon => [@board.latitude, @board.longitude]
+      @board.timezone = timezone.active_support_time_zone
       if @board.save
         Board.initialize_dependencies(@board)#TODO add a delay here
         format.html { redirect_to edit_board_path(@board), notice: 'Board was successfully created.' }
@@ -76,6 +78,6 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.require(:board).permit(:address, :zipcode, :boardnumber, :boardmodel, :name, :description, :image)
+      params.require(:board).permit(:address, :zipcode, :boardnumber, :boardmodel, :name, :description, :image, :timezone)
     end
 end
