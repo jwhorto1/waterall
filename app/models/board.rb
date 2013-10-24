@@ -14,7 +14,7 @@ class Board < ActiveRecord::Base
     end
   end
   def test_zipcode(zipcode)
-    zipcode = "00000" if zipcode.empty?
+    zipcode = "00000" if zipcode == nil || zipcode.empty?
     url = URI.parse("http://www.ziptasticapi.com/#{zipcode}")
     return JSON.parse(open(url).read)
   end

@@ -1,0 +1,43 @@
+<h1>Listing dailyweathers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Apisource</th>
+      <th>Maxtemp</th>
+      <th>Mintemp</th>
+      <th>Wind</th>
+      <th>Precipitationprob</th>
+      <th>Precipitation actual</th>
+      <th>Actual</th>
+      <th>Summary</th>
+      <th>Zipcode</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dailyweathers.each do |dailyweather| %>
+      <tr>
+        <td><%= dailyweather.apisource %></td>
+        <td><%= dailyweather.maxtemp %></td>
+        <td><%= dailyweather.mintemp %></td>
+        <td><%= dailyweather.wind %></td>
+        <td><%= dailyweather.precipitationprob %></td>
+        <td><%= dailyweather.precipitation_actual %></td>
+        <td><%= dailyweather.actual %></td>
+        <td><%= dailyweather.summary %></td>
+        <td><%= dailyweather.zipcode %></td>
+        <td><%= link_to 'Show', dailyweather %></td>
+        <td><%= link_to 'Edit', edit_dailyweather_path(dailyweather) %></td>
+        <td><%= link_to 'Destroy', dailyweather, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dailyweather', new_dailyweather_path %>

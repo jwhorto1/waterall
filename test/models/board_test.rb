@@ -27,6 +27,7 @@ class BoardTest < ActiveSupport::TestCase
     b.valid?
     assert_match /can not be longer than/, b.errors[:name].join, "=> Length error for name not found on board."
   end
+  
 end
 
 #            :id => :integer,
