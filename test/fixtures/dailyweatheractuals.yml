@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  maxtemp: 1
+  mintemp: 1
+  zipcode: MyString
+  wind: 1
+  precipitation: 1
+  summary: MyString
+  apicource: MyString
+
+two:
+  maxtemp: 1
+  mintemp: 1
+  zipcode: MyString
+  wind: 1
+  precipitation: 1
+  summary: MyString
+  apicource: MyString

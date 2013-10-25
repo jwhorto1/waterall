@@ -69,6 +69,6 @@ class DailyweathersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dailyweather_params
-      params.require(:dailyweather).permit(:apisource, :maxtemp, :mintemp, :wind, :precipitationprob, :precipitation_actual, :actual, :summary, :zipcode)
+      params.require(:dailyweather).permit(:apisource, :maxtemp, :mintemp, :wind, :precipitationprob, :summary, :zipcode)
     end
 end

@@ -6,8 +6,6 @@ class CreateDailyweathers < ActiveRecord::Migration
       t.integer :mintemp
       t.integer :wind
       t.integer :precipitationprob
-      t.integer :precipitation_actual
-      t.boolean :actual, :null => false, :default => false
       t.string :summary, :null => false, :default => ""
       t.string :zipcode
 
