@@ -24,12 +24,12 @@ class DailyweatherTest < ActiveSupport::TestCase
     d.valid?
     assert_match /can't be blank/, d.errors[:precipitationprob].join, "=> Presence error for precipitationprob not found for daily weather."
   end
-  test "test invalid without precipitation_actual" do
-    d = dailyweathers(:valid_dailyweather)
-    d.precipitation_actual = nil
-    d.valid?
-    assert_match /can't be blank/, d.errors[:precipitation_actual].join, "=> Presence error for precipitation_actual not found for daily weather."
-  end
+  # test "test invalid without precipitation_actual" do
+  #   d = dailyweathers(:valid_dailyweather)
+  #   d.precipitation_actual = nil
+  #   d.valid?
+  #   assert_match /can't be blank/, d.errors[:precipitation_actual].join, "=> Presence error for precipitation_actual not found for daily weather."
+  # end
   test "test invalid without wind" do
     d = dailyweathers(:valid_dailyweather)
     d.wind = nil
