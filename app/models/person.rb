@@ -1,4 +1,4 @@
 class Person < ActiveRecord::Base
   belongs_to :user
-  has_many :boards
+  has_and_belongs_to_many :boards  
 end

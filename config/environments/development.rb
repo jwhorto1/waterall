@@ -31,5 +31,7 @@ Waterall::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  
+  Timezone::Configure.begin do |c|
+    c.username = 'coxaqui'
+  end
 end

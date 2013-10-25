@@ -1,4 +1,4 @@
-<% userboards = Board.order(:id).load %>
+<% userboards = current_user.person.boards %>
 <%span = "span3"%>
   <ul class="thumbnails">
     <li class="span11">
