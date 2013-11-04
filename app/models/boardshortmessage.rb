@@ -1,6 +1,7 @@
 class Boardshortmessage < ActiveRecord::Base
   validates :date, :presence => true,
                                  :unless   => :date_is_correct?
+  has_one :board
   def date_is_correct?
     puts "#{self.read_attribute("date")}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
     if self.date < DateTime.now
@@ -107,40 +108,6 @@ class Boardshortmessage < ActiveRecord::Base
       puts sm.public_send("channel#{n}_on_in_seconds")
       puts e
     end
-    # 
-    # sm = Boardshortmessage.find_or_initialize_by_id(1)
-    # sm.channel1_on_in_seconds = 
-    # sm.channel2_on_in_seconds = 
-    # sm.channel3_on_in_seconds = 
-    # sm.channel4_on_in_seconds = 
-    # sm.channel5_on_in_seconds = 
-    # sm.channel6_on_in_seconds = 
-    # sm.channel7_on_in_seconds = 
-    # sm.channel8_on_in_seconds = 
-    # sm.date                   = 
-    # 
-    #   
-    #                 :board_id => :integer,
-    #         :randomaccesscode => :integer,
-    #               :scalediv32 => :integer,
-    #                     :year => :integer,
-    #                    :month => :integer,
-    #                      :day => :integer,
-    #                     :hour => :integer,
-    #                   :minute => :integer,
-    #                   :second => :integer,
-    #                 :channel1 => :integer,
-    #                 :channel2 => :integer,
-    #                 :channel3 => :integer,
-    #                 :channel4 => :integer,
-    #                 :channel5 => :integer,
-    #                 :channel6 => :integer,
-    #                 :channel7 => :integer,
-    #                 :channel8 => :integer,
-    #               :sendstatus => :integer,
-    #                     :echo => :integer,
-    #                 :willsend => :integer,
-    #                 :checksum => :integer,
-    # :concatinated_board_ascii => :string,
+
   end
 end
