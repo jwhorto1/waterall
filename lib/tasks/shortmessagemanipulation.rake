@@ -4,14 +4,6 @@ namespace :bardshorts do
   task :manipulate => :environment do
     @weekint = Date::DAYNAMES[DateTime.now.day.to_i]
     set_shortmessage_from_triggers
-    
-    
-    
-    Boardshortmessage.all.each_with_index do |board, i|
-      set_short_from_triggers(board)
-      puts "Updated board schedule (#{i}) - #{board.name}"
-    end
-    
     if @boardshortmessage.save && Boardshortmessage.encode_4_board(@boardshortmessage)
     end
     
@@ -22,8 +14,16 @@ namespace :bardshorts do
         channel = trigger.channel
         bid = trigger.channel.board_id
         if trigger 
+          
         end
       end
     end
   end
 end
+
+
+
+# Boardshortmessage.all.each_with_index do |board, i|
+#   set_short_from_triggers(board)
+#   puts "Updated board schedule (#{i}) - #{board.name}"
+# end
