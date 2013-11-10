@@ -29,7 +29,7 @@ class TriggersController < ApplicationController
 
     respond_to do |format|
       if @trigger.save
-        Boardshortmessage.update_master_sm(@trigger)
+        Boardshortmessage.update_master_sm(@trigger)#TODO only works with board 01
         format.html { redirect_to edit_channel_path(@trigger.channel), notice: 'Trigger was successfully created.' }
         format.json { render action: 'show', status: :created, location: @trigger }
       else
