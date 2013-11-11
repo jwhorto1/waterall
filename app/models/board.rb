@@ -6,7 +6,7 @@ class Board < ActiveRecord::Base
   validates_presence_of  :address, :name, :timezone
   validates_length_of :name, :within => 1..100, :too_long => "can not be longer than 100 characters"
   after_validation :geocode, :if => :address_changed?
-  
+  belongs_to :boardshortmessage
   def valid_zipcode
     state_city = Board.new.test_zipcode(zipcode)
     if state_city['city'] == nil

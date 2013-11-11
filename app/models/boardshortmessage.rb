@@ -1,6 +1,9 @@
 class Boardshortmessage < ActiveRecord::Base
   validates :date, :presence => true,
                                  :unless   => :date_is_correct?
+  has_one :board
+  after_save :addlast_updated_stamp
+    
   def date_is_correct?
     puts "#{self.read_attribute("date")}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
     if self.date < DateTime.now
@@ -29,6 +32,7 @@ class Boardshortmessage < ActiveRecord::Base
       return false
     end
   end  
+  
   def to_ascii(number)
     if number.to_s.size < 2
       #recusively ajust the number buffer
@@ -69,11 +73,8 @@ class Boardshortmessage < ActiveRecord::Base
         #ajust the number buffer
        num = Boardshortmessage.new.add_leading(num)
       end
-      puts num
-      puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
       concat << num
     end
-    
     #add date configuration
     dates = ["year", "month", "day", "hour", "minute", "second"]
     dates.each do |n|
@@ -93,4 +94,28 @@ class Boardshortmessage < ActiveRecord::Base
     #TODO
     #compound photonics
   end
+  def self.update_master_sm (trigger)
+    # when we get here we already know the SM needs to be updated
+    begin
+      n = trigger.channel.number <= 8 ? trigger.channel.number : 8 
+      sm = Boardshortmessage.find_or_initialize_by(id: 1)#TODO only works with board 01
+      sm.public_send("channel#{n}_on_in_seconds=", trigger.duration * 10)
+      sm.save
+      puts sm.public_send("channel#{n}_on_in_seconds")
+      puts "\n\n\n\n\n\n\n\n"
+    rescue Exception => e
+      puts "\n\n\n\n\n\n\n\n"
+      puts sm.public_send("channel#{n}_on_in_seconds")
+      puts e
+    end
+  end
+  private
+    def addlast_updated_stamp
+      if self.concatinated_board_ascii.include? "#{self.updated_at.to_i}"
+        #already updated
+      else
+        new_cat = "#{self.concatinated_board_ascii}T#{self.updated_at.to_i}"
+        self.update_attributes :concatinated_board_ascii => new_cat
+      end
+    end
 end
