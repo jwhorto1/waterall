@@ -10,13 +10,11 @@ namespace :bardshorts do
           hour = trigger.start_time.hour >= Time.now.in_time_zone("#{trigger.channel.board.timezone}").hour#past or current hour
           minute = trigger.start_time.min <= Time.now.in_time_zone("#{trigger.channel.board.timezone}").min#past or current minute
           last_update = (trigger.channel.board.boardshortmessage.updated_at.in_time_zone("#{trigger.channel.board.timezone}") + 15.minutes) < Time.now.in_time_zone("#{trigger.channel.board.timezone}")# last update was more than 15m ago
-          puts hour
-          puts minute
-          puts last_update
+          puts "#{hour}, #{minute}, #{last_update}"
           if hour && minute && last_update
              # => end if comparison, now BSM needs to be updated
              shortmessage = trigger.channel.board.boardshortmessage 
-             shortmessage.public_send("#channel{trigger.channel.number}_on_in_seconds=", (trigger.duration * 10) )
+             shortmessage.public_send("channel#{trigger.channel.number}_on_in_seconds=", (trigger.duration * 10) )
              if shortmessage.save && Boardshortmessage.encode_4_board(shortmessage)
                #cool
                puts "saved short message #{shortmessage.inspect}"
@@ -25,7 +23,7 @@ namespace :bardshorts do
              end
           end#if LONG LONG end
         rescue Exception => e
-          puts "\n\n\n\nFailed with: #{e.backtrace.join("\n\t")}\n"
+          puts "\n\n\n\nFailed at (#{$!}) with: #{e.backtrace.join("\n\t")}\n"
           next
         end
       end#trigger.each end
