@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+valid_dailyweather:
+  apisource: forecast.io
+  maxtemp: 82
+  mintemp: 58
+  wind: 10
+  precipitationprob: 52
+  precipitation_actual: 0
+  actual: false
+  summary: Clear sky today
+  zipcode: 95630
+
+blank:
+  apisource: MyString
+  maxtemp: 1
+  mintemp: 1
+  wind: 1
+  precipitationprob: 1
+  precipitation_actual: 1
+  actual: false
+  summary: MyString
+  zipcode: MyString

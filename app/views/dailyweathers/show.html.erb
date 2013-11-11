@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Apisource:</strong>
+  <%= @dailyweather.apisource %>
+</p>
+
+<p>
+  <strong>Maxtemp:</strong>
+  <%= @dailyweather.maxtemp %>
+</p>
+
+<p>
+  <strong>Mintemp:</strong>
+  <%= @dailyweather.mintemp %>
+</p>
+
+<p>
+  <strong>Wind:</strong>
+  <%= @dailyweather.wind %>
+</p>
+
+<p>
+  <strong>Precipitationprob:</strong>
+  <%= @dailyweather.precipitationprob %>
+</p>
+
+<p>
+  <strong>Precipitation actual:</strong>
+  <%= @dailyweather.precipitation_actual %>
+</p>
+
+<p>
+  <strong>Actual:</strong>
+  <%= @dailyweather.actual %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @dailyweather.summary %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @dailyweather.zipcode %>
+</p>
+
+<%= link_to 'Edit', edit_dailyweather_path(@dailyweather) %> |
+<%= link_to 'Back', dailyweathers_path %>

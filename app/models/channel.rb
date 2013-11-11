@@ -1,6 +1,6 @@
 class Channel < ActiveRecord::Base
   belongs_to :board
-  has_many :triggers
+  has_many :triggers, dependent: :destroy
   validates :board_id, :presence => true
   
   mount_uploader :channel_image, ChannelUploader

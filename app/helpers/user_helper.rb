@@ -12,7 +12,7 @@ module UserHelper
       result = request.location
       addr = "#{result.try(:city)}, #{result.try(:state)} #{result.try(:postal_code)}"
       board = Board.new
-      board.person_id = user.person.id
+      board.people << user.person
       board.address = addr
       puts board.save
       puts board.inspect.to_s

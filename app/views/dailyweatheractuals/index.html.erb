@@ -1,0 +1,39 @@
+<h1>Listing dailyweatheractuals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Maxtemp</th>
+      <th>Mintemp</th>
+      <th>Zipcode</th>
+      <th>Wind</th>
+      <th>Precipitation</th>
+      <th>Summary</th>
+      <th>Apicource</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dailyweatheractuals.each do |dailyweatheractual| %>
+      <tr>
+        <td><%= dailyweatheractual.maxtemp %></td>
+        <td><%= dailyweatheractual.mintemp %></td>
+        <td><%= dailyweatheractual.zipcode %></td>
+        <td><%= dailyweatheractual.wind %></td>
+        <td><%= dailyweatheractual.precipitation %></td>
+        <td><%= dailyweatheractual.summary %></td>
+        <td><%= dailyweatheractual.apicource %></td>
+        <td><%= link_to 'Show', dailyweatheractual %></td>
+        <td><%= link_to 'Edit', edit_dailyweatheractual_path(dailyweatheractual) %></td>
+        <td><%= link_to 'Destroy', dailyweatheractual, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dailyweatheractual', new_dailyweatheractual_path %>

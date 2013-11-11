@@ -16,12 +16,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'carrierwave'
 gem "rmagick"
 gem 'fog'
+gem 'unf'
+
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 gem 'geocoder'
+gem 'timezone'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -56,12 +59,12 @@ gem 'devise'
 gem 'omniauth-twitter'
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'rspec-rails'
 end
 group :development, :test do
 #  gem 'sqlite3'
   gem 'awesome_print'#, :require => 'ap'
-  gem 'rspec-rails'
   gem 'machinist'
   gem 'better_errors'
   gem 'binding_of_caller'

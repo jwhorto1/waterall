@@ -1,8 +1,23 @@
 class Board < ActiveRecord::Base
-  belongs_to :person
   has_many :channels
+  has_and_belongs_to_many :people
   geocoded_by :address
+  validate :valid_zipcode
+  validates_presence_of  :address, :name, :timezone
+  validates_length_of :name, :within => 1..100, :too_long => "can not be longer than 100 characters"
   after_validation :geocode, :if => :address_changed?
+  belongs_to :boardshortmessage
+  def valid_zipcode
+    state_city = Board.new.test_zipcode(zipcode)
+    if state_city['city'] == nil
+      errors.add(:zipcode, 'is not valid')
+    end
+  end
+  def test_zipcode(zipcode)
+    zipcode = "00000" if zipcode == nil || zipcode.empty?
+    url = URI.parse("http://www.ziptasticapi.com/#{zipcode}")
+    return JSON.parse(open(url).read)
+  end
   def self.initialize_dependencies(board)
     8.times do |n|
       puts "creating #{n.ordinalize} board channel"

@@ -1,4 +1,8 @@
 Waterall::Application.routes.draw do
+  resources :dailyweatheractuals
+
+  resources :dailyweathers
+
   resources :triggers
 
   resources :channels

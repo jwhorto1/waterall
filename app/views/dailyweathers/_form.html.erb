@@ -1,0 +1,53 @@
+<%= form_for(@dailyweather) do |f| %>
+  <% if @dailyweather.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dailyweather.errors.count, "error") %> prohibited this dailyweather from being saved:</h2>
+
+      <ul>
+      <% @dailyweather.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :apisource %><br>
+    <%= f.text_field :apisource %>
+  </div>
+  <div class="field">
+    <%= f.label :maxtemp %><br>
+    <%= f.number_field :maxtemp %>
+  </div>
+  <div class="field">
+    <%= f.label :mintemp %><br>
+    <%= f.number_field :mintemp %>
+  </div>
+  <div class="field">
+    <%= f.label :wind %><br>
+    <%= f.number_field :wind %>
+  </div>
+  <div class="field">
+    <%= f.label :precipitationprob %><br>
+    <%= f.number_field :precipitationprob %>
+  </div>
+  <div class="field">
+    <%= f.label :precipitation_actual %><br>
+    <%= f.number_field :precipitation_actual %>
+  </div>
+  <div class="field">
+    <%= f.label :actual %><br>
+    <%= f.check_box :actual %>
+  </div>
+  <div class="field">
+    <%= f.label :summary %><br>
+    <%= f.text_field :summary %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %><br>
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

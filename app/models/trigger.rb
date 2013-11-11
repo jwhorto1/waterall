@@ -2,7 +2,6 @@ class Trigger < ActiveRecord::Base
   validates :duration, :numericality => { :greater_than => 0 }
   belongs_to :channel
   validates :channel_id, :start_time, :weekday_int, :presence => true
-  
   def to_formatted_watering(time)
     time.strftime("%H:%M")
   end
