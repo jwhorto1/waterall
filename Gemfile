@@ -58,6 +58,9 @@ end
 gem 'devise' 
 gem 'omniauth-twitter'
 
+#managing delayed tasks
+gem 'whenever', :require => false
+
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails'
