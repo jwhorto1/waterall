@@ -76,5 +76,3 @@ namespace :weather do
     end
   end
 end#namespace
-
-# rails g scaffold Dailyweatheractual maxtemp:integer mintemp:integer zipcode:string wind:integer precipitation:integer summary:string apicource:string

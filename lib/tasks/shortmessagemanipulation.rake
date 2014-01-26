@@ -2,7 +2,6 @@ namespace :bardshorts do
   desc "update weather data on dailyweather models"
   #rake bardshorts:manipulate --trace
   task :manipulate => :environment do
-    
     def set_shortmessage_from_triggers
       triggers  = Trigger.where(weekday_int: @weekint)
       triggers.each_with_index do |trigger,i|
@@ -19,7 +18,7 @@ namespace :bardshorts do
                #cool
                puts "saved short message #{shortmessage.inspect}"
              else
-               puts "could not save/encode shortmessage\n\n\n\n\n"
+               puts "could not save/encode shortmessage\n#{shortmessage.errors.messages}\n#{shortmessage.inspect}\n\n\n"
              end
           end#if LONG LONG end
         rescue Exception => e
@@ -27,9 +26,7 @@ namespace :bardshorts do
           next
         end
       end#trigger.each end
-
     end#end  set_shortmessage_from_triggers
-    
     @weekint = Date::DAYNAMES[DateTime.now.wday.to_i]
     set_shortmessage_from_triggers
   end
