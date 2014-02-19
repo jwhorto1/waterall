@@ -29,6 +29,7 @@ class Boardshortmessage < ActiveRecord::Base
     if boardsm.save
       return true
     else
+      puts "ERROR:cannot encode"
       return false
     end
   end  
