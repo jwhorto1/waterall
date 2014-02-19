@@ -3,10 +3,10 @@ class Boardshortmessage < ActiveRecord::Base
                                  :unless   => :date_is_correct?
   has_one :board
   after_save :addlast_updated_stamp
-    
+  validates_presence_of :board_id  
   def date_is_correct?
-    puts "#{self.read_attribute("date")}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    if self.date < DateTime.now
+    now = DateTime.now.in_time_zone(board.try(:timezone))
+    if self.date > now
       errors.add(:date, 'is invalid. Cannot be in the past')
     else
       true
