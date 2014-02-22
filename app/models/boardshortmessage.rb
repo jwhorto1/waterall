@@ -6,7 +6,7 @@ class Boardshortmessage < ActiveRecord::Base
   validates_presence_of :board_id  
   def date_is_correct?
     now = DateTime.now.in_time_zone(board.try(:timezone))
-    if self.date > now
+    if self.date < now
       errors.add(:date, 'is invalid. Cannot be in the past')
     else
       true
