@@ -9,7 +9,6 @@ class BoardshortmessagesController < ApplicationController
   # GET /boardshortmessages/1.json
   def show
     @boardshortmessage = Boardshortmessage.find(params[:id])
-
     render json: @boardshortmessage
   end
 
