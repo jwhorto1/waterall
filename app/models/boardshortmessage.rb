@@ -9,7 +9,7 @@ class Boardshortmessage < ActiveRecord::Base
     :channel5_on_in_seconds,
     :channel6_on_in_seconds,
     :channel7_on_in_seconds,
-    :channel8_on_in_seconds, :in => (0..99).collect{|i| i.to_s}
+    :channel8_on_in_seconds, :in => (0..99).collect{|i| i.to_i} + (0..99).collect{|i| i.to_s}
   after_save :addlast_updated_stamp
   validates_presence_of :board_id  
   def date_is_correct?
