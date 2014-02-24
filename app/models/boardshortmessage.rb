@@ -1,17 +1,10 @@
 class Boardshortmessage < ActiveRecord::Base
-  validates :date, :presence => true,
-                                 :if   => :date_is_correct?
+  validates :date, :presence => true#,
+                                 #:if   => :date_is_correct?
   has_one :board
   after_save :addlast_updated_stamp
   validates_presence_of :board_id  
   def date_is_correct?
-    now = DateTime.now
-    puts "\nChecking Date"
-    for i in 1..3
-      puts "..."
-    end
-    puts "CurDate:#{date}"
-    puts "Now: #{now}"
     if date < now
       errors.add(:date, 'is invalid.')
       false
