@@ -43,6 +43,7 @@ class ChannelsController < ApplicationController
   # PATCH/PUT /channels/1.json
   def update
     respond_to do |format|
+      puts channel_params
       if @channel.update(channel_params)
         format.html { redirect_to edit_board_path(@channel.board), notice: "Channel \'#{@channel.name}\' was successfully updated." }
         format.json { head :no_content }

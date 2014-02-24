@@ -5,7 +5,7 @@ class Boardshortmessage < ActiveRecord::Base
   after_save :addlast_updated_stamp
   validates_presence_of :board_id  
   def date_is_correct?
-    now = DateTime.now.in_time_zone(board.try(:timezone))
+    now = DateTime.now
     puts "\nChecking Date"
     for i in 1..3
       puts "..."

@@ -50,6 +50,7 @@ class BoardsController < ApplicationController
   # PATCH/PUT /boards/1.json
   def update
     respond_to do |format|
+      puts board_params
       if @board.update(board_params)
         format.html { redirect_to static_dashboard_path, notice: 'Board was successfully updated.' }
         format.json { head :no_content }
