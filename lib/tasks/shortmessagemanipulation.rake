@@ -14,7 +14,7 @@ namespace :bardshorts do
           if hour && minute && last_update
              # => end if comparison, now BSM needs to be updated
              shortmessage = trigger.channel.board.boardshortmessage 
-             shortmessage.public_send("channel#{trigger.channel.number}_on_in_seconds=", (trigger.duration * 10) )
+             shortmessage.public_send("channel#{trigger.channel.number}_on_in_seconds=", (trigger.duration * 2) )
              shortmessage.date = DateTime.now.in_time_zone(trigger.channel.board.timezone)
              if shortmessage.save && Boardshortmessage.encode_4_board(shortmessage)
                puts "saved short message #{shortmessage.inspect}"
