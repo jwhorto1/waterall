@@ -2,6 +2,14 @@ class Boardshortmessage < ActiveRecord::Base
   validates :date, :presence => true#,
                                  #:if   => :date_is_correct?
   has_one :board
+  validates_inclusion_of :channel1_on_in_seconds,
+    :channel2_on_in_seconds,
+    :channel3_on_in_seconds,
+    :channel4_on_in_seconds,
+    :channel5_on_in_seconds,
+    :channel6_on_in_seconds,
+    :channel7_on_in_seconds,
+    :channel8_on_in_seconds, :in => (0..99).collect{|i| i.to_s}
   after_save :addlast_updated_stamp
   validates_presence_of :board_id  
   def date_is_correct?
@@ -94,17 +102,14 @@ class Boardshortmessage < ActiveRecord::Base
     #TODO
     #compound photonics
   end
-  def self.update_master_sm (trigger)
+  def self.update_master_sm(trigger)
     # when we get here we already know the SM needs to be updated
     begin
       n = trigger.channel.number <= 8 ? trigger.channel.number : 8 
-      sm = Boardshortmessage.find_or_initialize_by(id: 1)#TODO only works with board 01
-      sm.public_send("channel#{n}_on_in_seconds=", trigger.duration * 10)
+      sm = Boardshortmessage.find_or_initialize_by(id: "#{trigger.channel.board.boardshortmessage_id}")#TODO only works with board 01
+      sm.public_send("channel#{n}_on_in_seconds=", trigger.duration * 2)
       sm.save
-      puts sm.public_send("channel#{n}_on_in_seconds")
-      puts "\n\n\n\n\n\n\n\n"
     rescue Exception => e
-      puts "\n\n\n\n\n\n\n\n"
       puts sm.public_send("channel#{n}_on_in_seconds")
       puts e
     end
