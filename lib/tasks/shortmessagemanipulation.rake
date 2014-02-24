@@ -9,7 +9,7 @@ namespace :bardshorts do
         begin
           hour = trigger.start_time.hour >= Time.now.in_time_zone(trigger.channel.board.timezone).hour#past or current hour
           minute = trigger.start_time.min <= Time.now.in_time_zone(trigger.channel.board.timezone).min#past or current minute
-          last_update = (trigger.channel.board.boardshortmessage.updated_at.in_time_zone(trigger.channel.board.timezone) + 60.minutes) < Time.now.in_time_zone(trigger.channel.board.timezone)# last update was more than 15m ago
+          last_update = (trigger.channel.board.boardshortmessage.updated_at.in_time_zone(trigger.channel.board.timezone)) < Time.now.in_time_zone(trigger.channel.board.timezone)# last update was more than 15m ago
           puts "(#{trigger.id}) #{hour}, #{minute}, #{last_update}"
           if hour && minute && last_update
              # => end if comparison, now BSM needs to be updated
