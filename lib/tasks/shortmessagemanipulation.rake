@@ -10,8 +10,10 @@ namespace :bardshorts do
           hour = trigger.start_time.hour == Time.now.in_time_zone(trigger.channel.board.timezone).hour#past or current hour
           minute = trigger.start_time.min <= Time.now.in_time_zone(trigger.channel.board.timezone).min#past or current minute
           last_update = (trigger.channel.board.boardshortmessage.updated_at.in_time_zone(trigger.channel.board.timezone)) < Time.now.in_time_zone(trigger.channel.board.timezone)# last update was more than 15m ago
-          puts "(#{trigger.id}) #{hour}, #{minute}, #{last_update}"
+          puts "(#{trigger.id}) #{hour}, #{minute}, #{last_update}:#{trigger.channel.board.boardshortmessage.updated_at.in_time_zone(trigger.channel.board.timezone)}:#{Time.now.in_time_zone(trigger.channel.board.timezone}"
           if hour && minute && last_update
+            puts "----(#{trigger.id}) #{start_time}, #{duration}"
+            
              # => end if comparison, now BSM needs to be updated
              shortmessage = trigger.channel.board.boardshortmessage 
              shortmessage.public_send("channel#{trigger.channel.number}_on_in_seconds=", (trigger.duration * 2) )
@@ -28,7 +30,7 @@ namespace :bardshorts do
         end
       end#trigger.each end
     end#end  set_shortmessage_from_triggers
-    @weekint = Date::DAYNAMES[DateTime.now.wday.to_i]
+    @weekint = DateTime.now.wday.to_i
     set_shortmessage_from_triggers
   end
 end
