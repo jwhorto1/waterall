@@ -7,9 +7,9 @@ namespace :boardshortmessage do
       triggers  = Trigger.where(weekday_int: @weekint)
       triggers.each_with_index do |trigger,i|
         begin
-          if trigger.id != 563
-            next
-          end
+          # if trigger.id != 563
+          #   next
+          # end
           boardsm = trigger.channel.board.boardshortmessage
           hour = trigger.start_time.hour == Time.now.in_time_zone(trigger.channel.board.timezone).hour#past or current hour
           #This is very important: To make sure the task run at 4:10 does not trigger the 4:30 watering I basically mod to make sure they are the same.
