@@ -21,7 +21,15 @@ namespace :boardshortmessage do
           if hour && minute && last_update && trigger_updated
             puts "----------------(#{trigger.id}) #{trigger.start_time}, #{trigger.duration}"
              #if comparison, now BSM needs to be updated
-             shortmessage = trigger.channel.board.boardshortmessage 
+             shortmessage = trigger.channel.board.boardshortmessage
+             shortmessage.channel1_on_in_seconds= "0"
+             shortmessage.channel2_on_in_seconds= "0"
+             shortmessage.channel3_on_in_seconds= "0"
+             shortmessage.channel4_on_in_seconds= "0"
+             shortmessage.channel5_on_in_seconds= "0"
+             shortmessage.channel6_on_in_seconds= "0"
+             shortmessage.channel7_on_in_seconds= "0"
+             shortmessage.channel8_on_in_seconds= "0"
              shortmessage.public_send("channel#{trigger.channel.number}_on_in_seconds=", (trigger.duration * ENV['BOARDSM_MULTIPLIER'].to_i) )
              shortmessage.date = DateTime.now.in_time_zone(trigger.channel.board.timezone)
              if shortmessage.save && Boardshortmessage.encode_4_board(shortmessage)
@@ -42,7 +50,7 @@ namespace :boardshortmessage do
   #rake boardshortmessage:test_update_job --trace
   task :test_update_job => :environment do
     #Board.update_all(:timezone => 'Arizona')
-    #Trigger.update_all(:duration => 10)
+    Trigger.update_all(:duration => ENV['DEFAULT_TRIGGER_DURATION'])
     # jack = Board.find(6)
     # jack.boardshortmessage_id = 2
     # jack.save

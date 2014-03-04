@@ -43,7 +43,7 @@ class Board < ActiveRecord::Base
        t.channel_id     = channel.id
        t.weekday_id     = 0
        t.start_time          = Time.zone.local(Time.now.year,Time.now.month,Time.now.day,0,0)
-       t.duration       = 20#minutes #TODO: would be nice to have a configuration for default times etc on channels
+       t.duration       = ENV['DEFAULT_TRIGGER_DURATION'].to_i#minutes #TODO: would be nice to have a configuration for default times etc on channels
        t.weekday_int    = x
        t.weekday_string = Date::DAYNAMES[x]
        if t.save

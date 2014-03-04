@@ -5,4 +5,6 @@ ENV['CACHE_DIR']                  = "http://localhost/tmp/uploads"
 ENV['BOARDSM_MULTIPLIER']         = "2"
 ENV['BOARDSM_LAST_UPDATE']        = "2"
 ENV['BOARDSM_UPDATE_FREQUENCY']   = "10"
+ENV['DEFAULT_TRIGGER_DURATION']   = "10"
+
 
