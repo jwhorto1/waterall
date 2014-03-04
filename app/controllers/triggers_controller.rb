@@ -26,10 +26,9 @@ class TriggersController < ApplicationController
   # POST /triggers.json
   def create
     @trigger = Trigger.new(trigger_params)
-
     respond_to do |format|
       if @trigger.save
-        Boardshortmessage.update_master_sm(@trigger)#TODO only works with board 01
+        Boardshortmessage.update_master_sm(@trigger)
         format.html { redirect_to edit_channel_path(@trigger.channel), notice: 'Trigger was successfully created.' }
         format.json { render action: 'show', status: :created, location: @trigger }
       else
@@ -44,7 +43,7 @@ class TriggersController < ApplicationController
   def update
     respond_to do |format|
       if @trigger.update(trigger_params)
-        Boardshortmessage.update_master_sm(@trigger)
+        #Boardshortmessage.update_master_sm(@trigger)
         format.html { redirect_to edit_channel_path(@trigger.channel), notice: 'Trigger was successfully updated.' }
         format.json { head :no_content }
       else

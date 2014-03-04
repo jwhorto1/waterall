@@ -106,8 +106,8 @@ class Boardshortmessage < ActiveRecord::Base
     # when we get here we already know the SM needs to be updated
     begin
       n = trigger.channel.number <= 8 ? trigger.channel.number : 8 
-      sm = Boardshortmessage.find_or_initialize_by(id: "#{trigger.channel.board.boardshortmessage_id}")#TODO only works with board 01
-      sm.public_send("channel#{n}_on_in_seconds=", trigger.duration * 2)
+      sm = Boardshortmessage.find_or_initialize_by(id: "#{trigger.channel.board.boardshortmessage_id}")
+      sm.public_send("channel#{n}_on_in_seconds=", trigger.duration * ENV['BOARDSM_MULTIPLIER'].to_i)
       sm.save
     rescue Exception => e
       puts sm.public_send("channel#{n}_on_in_seconds")

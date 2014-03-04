@@ -8,7 +8,7 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %>  
   <div class="span4">
     <div class="field">
       <%= f.label :board_id %>
@@ -22,25 +22,24 @@
       <%= f.label :number %>
       <%= f.number_field :number %>
     </div>
+    <div><%= link_to 'Back to board', edit_board_path(@channel.board) %></div>
+    
   </div>
-
   <div class="span4">
     <div class="field">
       <%= render 'channels/subviews/channel_image', :channel => @channel %>
       <%= f.file_field :channel_image %>
       <%= f.hidden_field :channel_image_cache %>
     </div>
-  
     <div class="field">
       <%= f.label :remote_channel_image_url, "or image URL" %>
       <%= f.text_field :remote_channel_image_url %>
-    </div>
+    </div>    
     <%= render 'channels/subviews/schedule2', :channel => @channel %>    
-  </div>
-  
+  </div>    
   <div class="span11">
     <div class="actions">
-      <div><%= f.submit "Save", :class => "btn btn-primary" %></div>
+      <div><%= f.submit "Save Changes", :class => "btn btn-primary" %></div>      
     </div>
   </div>
   <!-- <a href="#" onclick="toggle_visibility('activate-channel-box');">activate channel</a>
