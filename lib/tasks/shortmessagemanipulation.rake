@@ -11,15 +11,12 @@ namespace :boardshortmessage do
             next
           end
           boardsm = trigger.channel.board.boardshortmessage
-          #puts "(#{trigger.id})(hour) #{trigger.start_time.hour} == #{Time.now.in_time_zone(trigger.channel.board.timezone).hour}"
           hour = trigger.start_time.hour == Time.now.in_time_zone(trigger.channel.board.timezone).hour#past or current hour
-          #puts "(#{trigger.id})(minute) #{trigger.start_time.min} <= #{Time.now.in_time_zone(trigger.channel.board.timezone).min}"
-          minute = trigger.start_time.min <= Time.now.in_time_zone(trigger.channel.board.timezone).min#past or current minute
-          #puts "(#{trigger.id})(last_update) #{boardsm.updated_at} < #{Time.now.in_time_zone(boardsm.updated_at.time.zone) - ENV['BOARDSM_LAST_UPDATE'].to_i.minute}"
+          #This is very important: To make sure the task run at 4:10 does not trigger the 4:30 watering I basically mod to make sure they are the same.
+          minute = trigger.start_time.min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i == (Time.now.in_time_zone(trigger.channel.board.timezone).min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i)
           last_update = boardsm.updated_at < Time.now.in_time_zone(boardsm.updated_at.time.zone) - ENV['BOARDSM_LAST_UPDATE'].to_i.minute# last update was more than ENV['BOARDSM_LAST_UPDATE'] min ago (2 as of this writing)
-          #puts "(#{trigger.id})(trigger_updated) #{trigger.updated_at} < #{boardsm.updated_at}"
-          #puts "*              #{boardsm.class}\n #{boardsm.updated_at}\n#{trigger.channel.board.boardshortmessage.inspect}"
           trigger_updated = trigger.updated_at > boardsm.updated_at
+          #puts "[minute] #{trigger.start_time.min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i} == #{Time.now.in_time_zone(trigger.channel.board.timezone).min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i}"
           #puts "(#{trigger.id})(all) #{hour}, #{minute}, #{last_update}, #{trigger_updated}"
           if hour && minute && last_update && trigger_updated
             puts "----------------(#{trigger.id}) #{trigger.start_time}, #{trigger.duration}"
@@ -44,8 +41,21 @@ namespace :boardshortmessage do
   end
   #rake boardshortmessage:test_update_job --trace
   task :test_update_job => :environment do
-    Board.update_all(:timezone => 'Arizona')
-    Trigger.update_all(:duration => 1)
+    #Board.update_all(:timezone => 'Arizona')
+    #Trigger.update_all(:duration => 10)
+    # jack = Board.find(6)
+    # jack.boardshortmessage_id = 2
+    # jack.save
+    # 
+    # jack = Board.find(9)
+    # jack.boardshortmessage_id = 3
+    # jack.save
+    # 
+    # jack = Board.find(5)
+    # jack.boardshortmessage_id = 4
+    # jack.save
+    
+    
   end
 end
 
