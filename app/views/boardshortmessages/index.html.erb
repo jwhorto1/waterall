@@ -16,6 +16,7 @@
       <th>Channel 7</th>
       <th>Channel 8</th>
       <th>Date</th>
+      <th>Board</th>
       <!-- <th></th>
       <th></th> -->
       <th></th>
@@ -35,6 +36,8 @@
         <td><span class="label label-success"><%= boardshortmessage.channel7_on_in_seconds %></span></td>
         <td><span class="label label-success"><%= boardshortmessage.channel8_on_in_seconds %></span></td>
         <td><span class="label"><%= boardshortmessage.date.to_formatted_s(:long) %></span></td>
+        <td><%= link_to truncate(boardshortmessage.board.name, :length => 20), edit_board_path(boardshortmessage.board)%></td>
+        
         <!-- <td><%= link_to 'Show', boardshortmessage %></td> -->
         <td><%= link_to 'Edit', edit_boardshortmessage_path(boardshortmessage) %></td>
         <!-- <td><%= link_to 'Delete', boardshortmessage, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
