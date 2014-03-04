@@ -1,5 +1,6 @@
 <div class="page-header">
   <h1>&nbsp;&nbsp; <%=@channel.name%> <small> settings and schedule</small></h1>
 </div>
-
+<p><%= link_to 'Back to board', edit_board_path(@channel.board) %></p>
 <%= render 'form' %>
+

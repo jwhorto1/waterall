@@ -4,8 +4,10 @@
 </div>
 
 <div class="span4">
-  <h1>Channels</h1>
-  <%= render 'boards/subviews/channels', :board => @board %>   
+  <h1>Channels</h1><p><%= link_to 'Add channel', new_channel_path %></p>
+
+  <%= render 'boards/subviews/channels', :board => @board %>     
 </div>
+
 
 

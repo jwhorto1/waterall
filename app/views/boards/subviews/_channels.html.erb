@@ -6,8 +6,11 @@
 <%end%>
 <%board.channels.each_with_index do |channel, i|%>
     <div class="thumbnail span1">
+      <p><%= "Channel #{channel.number}" %></p>
       <a href=<%="#{edit_channel_path(channel)}"%> class="thumbnail" rel="tooltip" data-original-title="Edit channel <%=channel.number%>, <%=channel.name%>" data-placement="bottom">
         <%= image_tag("#{channel.channel_image_url(:rec)}", :class => "img-responsive", :alt =>"Responsive image") %>
       </a>
+      <p><%= "#{truncate(channel.name, :length => 10)}" %></p>
+                  
     </div>
 <%end%>
