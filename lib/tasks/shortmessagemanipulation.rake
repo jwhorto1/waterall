@@ -22,6 +22,7 @@ namespace :boardshortmessage do
             puts "----------------(#{trigger.id}) #{trigger.start_time}, #{trigger.duration}"
              #if comparison, now BSM needs to be updated
              shortmessage = trigger.channel.board.boardshortmessage
+             #make so the channels count can dynamic (1, 4 8 whatever) etc.
              shortmessage.channel1_on_in_seconds= "0"
              shortmessage.channel2_on_in_seconds= "0"
              shortmessage.channel3_on_in_seconds= "0"
