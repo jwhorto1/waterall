@@ -45,7 +45,7 @@ namespace :boardshortmessage do
         end
       end#trigger.each end
     end#end  set_shortmessage_from_triggers
-    @weekint = DateTime.now.wday.to_i
+    @weekint = DateTime.now.in_time_zone("Arizona").wday.to_i
     set_shortmessage_from_triggers
   end
   #rake boardshortmessage:test_update_job --trace
