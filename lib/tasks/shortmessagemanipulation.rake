@@ -5,7 +5,7 @@ namespace :boardshortmessage do
     #TODO: it might make sense to lock this boardmessage so if a board is requesting it, it does not notice teh changes before they are complete. The hardware board will need to check on a flag first likely.
     def zero_out_boardshortmessage
       #TODO: this so will NOT scale.
-      Boardshortmessage.all.each do |bsm|
+      Boardshortmessage.all.each do |shortmessage|
         8.times do |i|
           shortmessage.public_send("channel#{i+1}_on_in_seconds=", 0 )
         end
@@ -13,7 +13,6 @@ namespace :boardshortmessage do
     end
     def set_shortmessage_from_triggers
       zero_out_boardshortmessage
-      
       triggers  = Trigger.where(weekday_int: @weekint)
       triggers.each_with_index do |trigger,i|
         begin
