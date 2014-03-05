@@ -12,6 +12,8 @@ namespace :boardshortmessage do
       end
     end
     def set_shortmessage_from_triggers
+      zero_out_boardshortmessage
+      
       triggers  = Trigger.where(weekday_int: @weekint)
       triggers.each_with_index do |trigger,i|
         begin
