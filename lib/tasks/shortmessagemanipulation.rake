@@ -3,6 +3,14 @@ namespace :boardshortmessage do
   #rake boardshortmessage:manipulate --trace
   task :manipulate => :environment do
     #TODO: it might make sense to lock this boardmessage so if a board is requesting it, it does not notice teh changes before they are complete. The hardware board will need to check on a flag first likely.
+    def zero_out_boardshortmessage
+      #TODO: this so will NOT scale.
+      Boardshortmessage.all.each do |bsm|
+        8.times do |i|
+          shortmessage.public_send("channel#{i+1}_on_in_seconds=", 0 )
+        end
+      end
+    end
     def set_shortmessage_from_triggers
       triggers  = Trigger.where(weekday_int: @weekint)
       triggers.each_with_index do |trigger,i|
@@ -22,15 +30,6 @@ namespace :boardshortmessage do
             puts "----------------(#{trigger.id}) #{trigger.start_time}, #{trigger.duration}"
              #if comparison, now BSM needs to be updated
              shortmessage = trigger.channel.board.boardshortmessage
-             #make so the channels count can dynamic (1, 4 8 whatever) etc.
-             shortmessage.channel1_on_in_seconds= "0"
-             shortmessage.channel2_on_in_seconds= "0"
-             shortmessage.channel3_on_in_seconds= "0"
-             shortmessage.channel4_on_in_seconds= "0"
-             shortmessage.channel5_on_in_seconds= "0"
-             shortmessage.channel6_on_in_seconds= "0"
-             shortmessage.channel7_on_in_seconds= "0"
-             shortmessage.channel8_on_in_seconds= "0"
              shortmessage.public_send("channel#{trigger.channel.number}_on_in_seconds=", (trigger.duration * ENV['BOARDSM_MULTIPLIER'].to_i) )
              shortmessage.date = DateTime.now.in_time_zone(trigger.channel.board.timezone)
              if shortmessage.save && Boardshortmessage.encode_4_board(shortmessage)

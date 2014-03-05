@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Board</th>
       <th>Channel 1</th>
       <th>Channel 2</th>
       <th>Channel 3</th>
@@ -16,17 +17,16 @@
       <th>Channel 7</th>
       <th>Channel 8</th>
       <th>Date</th>
-      <th>Board</th>
       <!-- <th></th>
       <th></th> -->
       <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @boardshortmessages.each do |boardshortmessage| %>
       <tr>
         <td><span class="label label-warning"><%= boardshortmessage.id %></span></td>
+        <td><%= link_to truncate(boardshortmessage.board.name, :length => 20), edit_board_path(boardshortmessage.board)%></td>
         <td><span class="label label-success"><%= boardshortmessage.channel1_on_in_seconds %></span></td>
         <td><span class="label label-success"><%= boardshortmessage.channel2_on_in_seconds %></span></td>
         <td><span class="label label-success"><%= boardshortmessage.channel3_on_in_seconds %></span></td>
@@ -35,9 +35,7 @@
         <td><span class="label label-success"><%= boardshortmessage.channel6_on_in_seconds %></span></td>
         <td><span class="label label-success"><%= boardshortmessage.channel7_on_in_seconds %></span></td>
         <td><span class="label label-success"><%= boardshortmessage.channel8_on_in_seconds %></span></td>
-        <td><span class="label"><%= boardshortmessage.date.to_formatted_s(:long) %></span></td>
-        <td><%= link_to truncate(boardshortmessage.board.name, :length => 20), edit_board_path(boardshortmessage.board)%></td>
-        
+        <td><span class="label"><%= boardshortmessage.date.to_formatted_s(:long) %></span></td>        
         <!-- <td><%= link_to 'Show', boardshortmessage %></td> -->
         <td><%= link_to 'Edit', edit_boardshortmessage_path(boardshortmessage) %></td>
         <!-- <td><%= link_to 'Delete', boardshortmessage, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
