@@ -1,7 +1,7 @@
 class Boardshortmessage < ActiveRecord::Base
   validates :date, :presence => true#,
                                  #:if   => :date_is_correct?
-  has_one :board
+  belongs_to :board
   validates_inclusion_of :channel1_on_in_seconds,
     :channel2_on_in_seconds,
     :channel3_on_in_seconds,
