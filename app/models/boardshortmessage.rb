@@ -10,7 +10,6 @@ class Boardshortmessage < ActiveRecord::Base
     :channel6_on_in_seconds,
     :channel7_on_in_seconds,
     :channel8_on_in_seconds, :in => (0..99).collect{|i| i.to_i} + (0..99).collect{|i| i.to_s}
-  after_save :addlast_updated_stamp
   validates_presence_of :board_id  
   def date_is_correct?
     if date < now
@@ -33,6 +32,7 @@ class Boardshortmessage < ActiveRecord::Base
       #TODO: convert the other fields if necessary and add to concatnate string as needed.
     #send to Concatinated board ascii
     boardsm.concatenate(boardsm)
+    boardsm.concatinated_board_ascii = "#{boardsm.concatinated_board_ascii}T#{boardsm.updated_at.to_i}"
     if boardsm.save
       return true
     else
@@ -136,14 +136,4 @@ class Boardshortmessage < ActiveRecord::Base
     end
     self.save    
   end
-  
-  private
-    def addlast_updated_stamp
-      if self.concatinated_board_ascii.include? "#{self.updated_at.to_i}"
-        #already updated
-      else
-        new_cat = "#{self.concatinated_board_ascii}T#{self.updated_at.to_i}"
-        self.update_attributes :concatinated_board_ascii => new_cat
-      end
-    end
 end
