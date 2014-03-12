@@ -1,3 +1,4 @@
+require 'rake'
 class BoardshortmessagesController < ApplicationController
   before_action :set_boardshortmessage, only: [:show, :edit, :update, :destroy]
   # GET /boardshortmessages
@@ -9,6 +10,9 @@ class BoardshortmessagesController < ApplicationController
   # GET /boardshortmessages/1.json
   def show
     @boardshortmessage = Boardshortmessage.find(params[:id])
+    system "rake boardshortmessage:manipulate --trace"
+    #Rake::Task["boardshortmessage:manipulate"].invoke
+    #@boardshortmessage.update_board_schedule
     render json: @boardshortmessage
   end
 

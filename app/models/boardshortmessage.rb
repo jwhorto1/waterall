@@ -114,6 +114,16 @@ class Boardshortmessage < ActiveRecord::Base
       puts e
     end
   end
+  def update_board_schedule
+    # bsm = Boardshortmessage.find(self.boardshortmessage_id)
+    # self.channels.each do |channel|
+    #   channel.triggers.each do |trigger|
+    #     
+    #   end
+    # end
+    
+  end
+  
   private
     def addlast_updated_stamp
       if self.concatinated_board_ascii.include? "#{self.updated_at.to_i}"
