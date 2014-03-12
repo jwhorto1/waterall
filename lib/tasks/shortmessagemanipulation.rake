@@ -44,7 +44,7 @@ namespace :boardshortmessage do
             #This is very important: To make sure the task run at 4:10 does not trigger the 4:30 watering I basically mod to make sure they are the same.
             minute = trigger.start_time.min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i == (Time.now.in_time_zone(trigger.channel.board.timezone).min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i)
             last_update = @shortmessage.updated_at < Time.now.in_time_zone(@shortmessage.updated_at.time.zone) - ENV['BOARDSM_LAST_UPDATE'].to_i.minute# last update was more than ENV['BOARDSM_LAST_UPDATE'] min ago (2 as of this writing)
-            trigger_updated = trigger.updated_at > @shortmessage.updated_at
+            trigger_updated = true#trigger.updated_at > @shortmessage.updated_at
             puts "----------------(#{trigger.id})(all) #{hour}, #{minute}, #{last_update}, #{trigger_updated}"
             if hour && minute && last_update && trigger_updated
               puts "----------------(#{trigger.id}) #{trigger.start_time}, #{trigger.duration}"

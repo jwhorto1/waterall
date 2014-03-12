@@ -114,14 +114,27 @@ class Boardshortmessage < ActiveRecord::Base
       puts e
     end
   end
+  def check_for_hot_trigger(trigger)
+    hour = trigger.start_time.hour == Time.now.in_time_zone(trigger.channel.board.timezone).hour#past or current hour
+    minute = trigger.start_time.min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i == (Time.now.in_time_zone(trigger.channel.board.timezone).min/ENV['BOARDSM_UPDATE_FREQUENCY'].to_i)
+    if hour && minute
+      self.public_send("channel#{trigger.channel.number}_on_in_seconds=", trigger.duration * ENV['BOARDSM_MULTIPLIER'].to_i)    
+    end
+  end
   def update_board_schedule
-    # bsm = Boardshortmessage.find(self.boardshortmessage_id)
-    # self.channels.each do |channel|
-    #   channel.triggers.each do |trigger|
-    #     
-    #   end
-    # end
+    8.times do |i|
+      self.public_send("channel#{i+1}_on_in_seconds=", 0 )
+    end
+    @weekint = DateTime.now.in_time_zone("Arizona").wday.to_i 
+    board = self.board
     
+    board.channels.each do |channel|
+      channel.triggers.where(weekday_int: @weekint).each do |trigger|
+        #check for trigger that is supposed to be up now
+        self.check_for_hot_trigger(trigger)
+      end
+    end
+    self.save    
   end
   
   private
