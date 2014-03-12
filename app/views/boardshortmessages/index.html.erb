@@ -16,6 +16,8 @@
       <th>Channel 6</th>
       <th>Channel 7</th>
       <th>Channel 8</th>
+      <th>Board Encoded message</th>
+      <th>Updated at</th>
       <th>Date</th>
       <!-- <th></th>
       <th></th> -->
@@ -35,6 +37,9 @@
         <td><span class="label label-success"><%= boardshortmessage.channel6_on_in_seconds %></span></td>
         <td><span class="label label-success"><%= boardshortmessage.channel7_on_in_seconds %></span></td>
         <td><span class="label label-success"><%= boardshortmessage.channel8_on_in_seconds %></span></td>
+        <td><span class="label label-success"><%= boardshortmessage.concatinated_board_ascii %></span></td>
+        <td><span class="label label-success"><%= boardshortmessage.updated_at.to_formatted_s(:long) %></span></td>
+        
         <td><span class="label"><%= boardshortmessage.date.to_formatted_s(:long) %></span></td>        
         <!-- <td><%= link_to 'Show', boardshortmessage %></td> -->
         <td><%= link_to 'Edit', edit_boardshortmessage_path(boardshortmessage) %></td>

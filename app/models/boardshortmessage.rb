@@ -134,6 +134,6 @@ class Boardshortmessage < ActiveRecord::Base
         self.check_for_hot_trigger(trigger)
       end
     end
-    self.save    
+    Boardshortmessage.encode_4_board(self)
   end
 end
